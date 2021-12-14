@@ -6,8 +6,8 @@ class Home extends BaseController
 {
     public function index()
     {   
-        echo view('parts/header', ['title' => 'un titre']);
+        echo view('templates/header', ['title' => 'Immo\'Magic']);
         echo view('home');
-        echo view('parts/footer');
+        echo view('templates/footer');
     }
 }

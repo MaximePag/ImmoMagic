@@ -1,5 +1,6 @@
+/* CSS Maxime */
 #home_search, #home_slider{
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.4);
 }
 #home{
     background-image: url(../images/maison_home.jpg);
@@ -19,4 +20,36 @@
 }
 .card{
     margin-bottom: 200px !important;
+}
+/* CSS Ludivine */
+#header{
+    text-align: center;
+}
+#immomagic{
+    vertical-align: center;
+}
+#title {
+    color: #3E4E50;
+    text-shadow: 4px 4px 5px #59C3C3;
+    text-align: center;
+    margin-top: 2em;
+}
+#rotate{
+    transform: rotate(-4deg);
+    font-size: 60px;
+}
+#slogan{
+    font-size: 20px;
+}
+.icons{
+    text-align: right;
+    color: #3E4E50;
+}
+i{
+   text-align: right;
+    margin: 0 5px;
+}
+#footer{
+    text-align: center;
+    background-color: #59C3C3;
 }
