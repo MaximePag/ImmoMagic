@@ -1,0 +1,22 @@
+#home_search, #home_slider{
+    background-color: rgba(0,0,0,0.6);
+}
+#home{
+    background-image: url(../images/maison_home.jpg);
+    background-size: cover;
+    background-position-y: center;
+}
+#card_search{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.card, .card img{
+    border-top-right-radius: 3% !important;
+    border-top-left-radius: 3% !important;
+}
+.card-img-top{
+    height: 325px;
+}
+.card{
+    margin-bottom: 200px !important;
+}
