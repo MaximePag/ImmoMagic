@@ -36,7 +36,7 @@
                 <div class="carousel-item active">
                     <div class="card-group">
                         <div class="card mx-3">
-                            <img src="/assets/images/maison-2.jpg" class="card-img-top" alt="/assets/images/maison-2.jpg">
+                            <img src="assets/images/maison-2.jpg" class="card-img-top" alt="assets/images/maison-2.jpg">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="card mx-3">
-                            <img src="/assets/images/maison-3.jpg" class="card-img-top" alt="/assets/images/maison-3.jpg">
+                            <img src="assets/images/maison-3.jpg" class="card-img-top" alt="assets/images/maison-3.jpg">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="card mx-3">
-                            <img src="/assets/images/maison-1.jpg" class="card-img-top" alt="/assets/images/maison-1.jpg">
+                            <img src="assets/images/maison-1.jpg" class="card-img-top" alt="assets/images/maison-1.jpg">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
@@ -64,7 +64,7 @@
                 <div class="carousel-item mb-2">
                     <div class="card-group">
                         <div class="card mx-3">
-                            <img src="/assets/images/maison-3.jpg" class="card-img-top" alt="/assets/images/maison-3.jpg">
+                            <img src="assets/images/maison-3.jpg" class="card-img-top" alt="assets/images/maison-3.jpg">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div class="card mx-3">
-                            <img src="/assets/images/maison-1.jpg" class="card-img-top" alt="lel">
+                            <img src="assets/images/maison-1.jpg" class="card-img-top" alt="lel">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="card mx-3">
-                            <img src="/assets/images/maison-2.jpg" class="card-img-top" alt="/assets/images/maison-2.jpg">
+                            <img src="assets/images/maison-2.jpg" class="card-img-top" alt="assets/images/maison-2.jpg">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
