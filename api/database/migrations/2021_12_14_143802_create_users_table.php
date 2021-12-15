@@ -8,21 +8,22 @@ class CreateUsersTable extends Migration {
 
     public function up()
     {
+        Schema::defaultStringLength(191);
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('firstname');
             $table->string('lastname');
+            $table->string('firstname');
             $table->string('phoneNumber');
-            $table->timestamp('registerDate')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->string('mail')->unique();
+            $table->string('email')->unique()->notNullable();
             $table->string('password');
-            $table->rememberToken();
             $table->string('adress');
-            $table->string('additionalAdress');
+            $table->string('additionnalAdress');
             $table->string('zipCode');
             $table->string('city');
             $table->string('profesionnalNumber');
+            $table->boolean('archive');
             $table->timestamps();
+
         });
     }
     public function down()
