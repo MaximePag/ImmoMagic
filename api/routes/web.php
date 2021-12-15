@@ -13,6 +13,13 @@
 |
 */
 
+
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    // Matches "/api/register
+    $router->post('addAppointment', 'AppointmentsController@createAppointment');
+});
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });

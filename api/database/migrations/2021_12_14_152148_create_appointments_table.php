@@ -17,6 +17,7 @@ class CreateAppointmentsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamp('dateHour');
             $table->string('notes');
+
         });
     }
 
