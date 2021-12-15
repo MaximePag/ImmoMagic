@@ -13,10 +13,8 @@ class CreateUsersTable extends Migration {
             $table->string('firstname');
             $table->string('lastname');
             $table->string('phoneNumber');
-            $table->timestamp('registerDate')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('mail')->unique();
             $table->string('password');
-            $table->rememberToken();
             $table->string('adress');
             $table->string('additionalAdress');
             $table->string('zipCode');
