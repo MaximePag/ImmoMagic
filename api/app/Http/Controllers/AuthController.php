@@ -96,7 +96,7 @@ class AuthController extends Controller
         return response()->json($user);
 
     }
-
+    
     public function archive($id)
     {
         $user = User::find($id);

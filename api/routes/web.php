@@ -18,7 +18,7 @@ $router->get('/', function () use ($router) {
     });
 });
 
-$router->group(['prefix' => 'api'], function () use ($router) {
+$router->group(['prefix' => 'user'], function () use ($router) {
     $router->get('index', 'AuthController@index');
     $router->get('show/{id}', 'AuthController@show');
     $router->post('register', 'AuthController@register');
@@ -26,6 +26,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->patch('archive/{id}', 'AuthController@archive');
     $router->put('update/{id}', 'AuthController@update');
     $router->delete('delete/{id}', 'AuthController@delete');
+    $router->get('profile', 'UserController@profile');
+    $router->get('users/{id}', 'UserController@singleUser');
+    $router->get('users', 'UserController@allUsers');
 });
 
 $router->group(['prefix' => 'appointmentssubjects'], function () use ($router) {
