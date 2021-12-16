@@ -30,11 +30,12 @@ class CreateRealEstateTable extends Migration
             $table->integer('floorNumber');
             $table->boolean('garage');
             $table->boolean('parking');
-            $table->timestamp('constructionYear');
+            $table->timestamp('constructionYear')->nullable();
             $table->boolean('worksToBeDone');
             $table->integer('GES');
             $table->integer('DPE');
             $table->boolean('archives');
+            $table->timestamps();
         });
     }
 

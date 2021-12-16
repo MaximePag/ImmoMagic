@@ -13,7 +13,7 @@ class RealEstate extends Model implements AuthenticatableContract, AuthorizableC
 {
     use Authenticatable, Authorizable, HasFactory;
 
-    /* protected $table = 'real_estate'; */
+    protected $table = 'realEstate';
     /**
      * The attributes that are mass assignable.
      *

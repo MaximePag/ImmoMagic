@@ -13,18 +13,19 @@
 |
 */
 
-/* $router->get('/', function () use ($router) {
+$router->get('/', function () use ($router) {
     return $router->app->version();
+});
+// get('objet'), ('controller@methode');
+$router->get('RealEstate', 'realestateController@showAllrealestateDetail' );
+$router->get('/RealEstate/{id}', 'realestateController@showrealestateDetail');
+$router->post('RealEstate', 'realestateController@createrealestate');
+$router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
+$router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
+
+/* $router->group(['prefix' => ''], function () use ($router) {
+    $router->post('createrealestate', 'realestateController@createrealestate');
 }); */
 
-$router->group(['prefix' => ''], function () use ($router) {
-    $router->post('createrealestate', 'realestateController@createrealestate');
-});
-// $router->get('realestate', 'realestateController@index' );
-// $router->get('/realestate/{id}', 'realestateController@show');
-/* $router->post('createrealestate', 'realestateController@createrealestate'); */
-// $router->put('/realestate/{id}', 'realestateController@update');
-// $router->delete('/realestate/{id}', 'realestateController@delete');
 
 /** @var \Laravel\Lumen\Routing\Router $router */
-

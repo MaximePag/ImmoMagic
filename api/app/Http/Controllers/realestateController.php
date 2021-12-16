@@ -17,26 +17,25 @@ class realestateController extends Controller
     {
         //validate incoming request 
             $this->validate($request, [
-            'adress' => $request->input('adress'),
-            'price' => $request->input('price'),
-            'expenses' => $request->input('expenses'),
-            'description' => $request->input('description'),
-            'numberOfViews' => $request->input('numberOfViews'),
-            'livingArea' => $request->input('livingArea'),
-            'landArea' => $request->input('landArea'),
-            'livingRoomArea' => $request->input('livingRoomArea'),
-            'roomNumber' => $request->input('roomNumber'),
-            'bedroomNumber' => $request->input('bedroomNumber'),
-            'bathroomNumber' => $request->input('bathroomNumber'),
-            'toiletNumber' => $request->input('toiletNumber'),
-            'floorNumber' => $request->input('floorNumber'),
-            'garage' => false,
-            'parking' => false,
-            'constructionYear' => $request->input('constructionYear'),
-            'worksToBeDone' => false,
-            'GES' => $request->input('GES'),
-            'DPE' => $request->input('DPE'),
-            'archived' => false,
+            'adress' => 'required|string',
+            'price' => 'required',
+            'expenses' => 'required',
+            'description' => 'required|string',
+            'numberOfViews' => 'required',
+            'livingArea' => 'required',
+            'landArea' => 'required',
+            'livingRoomArea' => 'required',
+            'roomNumber' => 'required',
+            'bedroomNumber' => 'required',
+            'bathroomNumber' => 'required',
+            'toiletNumber' => 'required',
+            'floorNumber' => 'required',
+
+
+
+            'GES' => 'required',
+            'DPE' => 'required',
+
             ]);
 
             try {
@@ -54,19 +53,19 @@ class realestateController extends Controller
                 $realestate->bathroomNumber = $request->input('bathroomNumber');
                 $realestate->toiletNumber = $request->input('toiletNumber');
                 $realestate->floorNumber = $request->input('floorNumber');
-                $realestate->parking = false;
                 $realestate->garage = false;
+                $realestate->parking = false;
                 $realestate->constructionYear = $request->input('constructionYear');
                 $realestate->worksToBeDone = false;
                 $realestate->GES = $request->input('GES');
                 $realestate->DPE = $request->input('DPE');
-                $realestate->archived = false;
+                $realestate->archives = false;
 
                 $realestate->save();
                 
-                return response()->json(['realestate' => $realestate, 'message'=> 'le bien a été créé'], 201); 
-            } catch(\Exception $e) {
-                return response()->json(['message' => 'pokeuh'], 409); 
+                 return response()->json(['realestate' => $realestate, 'message'=> 'le bien a été créé'], 201); 
+           } catch(\Exception $e) {
+                return response()->json(['message' => 'ça marche pas'], 404); 
             }
         }
 
@@ -82,8 +81,8 @@ class realestateController extends Controller
 
     public function deleterealestate($id){
         try{
-            $realestate = realestate::findOrFail($id);
-            $realestate->update(['archived'=> true]);
+            $realestate = realestate::find($id);
+            $realestate->update(['archives'=> 1]);
             return response()->json('Le fichier a été archivé',200);
         }catch(\Exception $e){
             return response()->json('bien non trouvé',404);
@@ -99,14 +98,20 @@ class realestateController extends Controller
      */
 
     public function showrealestateDetail($id){
-        try{
-            $realestate = realestate::findOrFail($id);
-            return response()->json($realestate,200);
-        }catch(\Exception $e){
+        //try{
+            $realestate = realestate::find($id);
+            return response()->json($realestate);
+        /* }catch(\Exception $e){
             return response()->json('bien non trouvé',404);
-        }
+        } */
     }
-            
+
+// montre tous les biens
+    public function showAllrealestateDetail(){
+            $realestate = realestate::all();
+            return response()->json($realestate);
+    }
+
    /**
      * fonction updaterealestate
      * Met à jour le bien en fonction des paramètres, et de l'id. Message d'erreur si l'id ne correspond pas à un bien créé par l'utilisateur
@@ -119,7 +124,7 @@ class realestateController extends Controller
 
     public function updaterealestate($id, Request $request){
         try{
-            $realestate = realestate::findOrFail($id);
+            $realestate = realestate::find($id);
             $realestate->update($request->all());
             return response()->json($realestate,200);
         }catch(\Exception $e){
