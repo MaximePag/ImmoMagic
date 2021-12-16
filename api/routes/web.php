@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** @var Router $router */
 
 /*
 |--------------------------------------------------------------------------
@@ -13,13 +13,17 @@
 |
 */
 
-
-
-$router->group(['prefix' => 'api'], function () use ($router) {
-    // Matches "/api/register
-    $router->post('addAppointment', 'AppointmentsController@createAppointment');
-});
+use Laravel\Lumen\Routing\Router;
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+/**
+ * Routers for Extras
+ */
+$router->get('/extras', 'ExtrasController@index');
+$router->get('/extras/{id}', 'ExtrasController@show');
+$router->post('/extras', 'ExtrasController@create');
+$router->put('/extras/{id}', 'ExtrasController@update');
+$router->delete('/extras/{id}', 'ExtrasController@delete');
