@@ -8,9 +8,9 @@ class TypesOfHeatingController extends Controller
 {
     public function index()
     {
-        $typesOfContract = TypesOfHeating::all();
+        $typesOfHeating = TypesOfHeating::all();
 
-        return response()->json($typesOfContract);
+        return response()->json($typesOfHeating);
     }
     public function show($id)
     {
