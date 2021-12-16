@@ -18,10 +18,11 @@ $router->get('/', function () use ($router) {
     });
 });
 
-$router->group(['prefix' => 'user'], function () use ($router) {
+$router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('index', 'AuthController@index');
     $router->get('show/{id}', 'AuthController@show');
     $router->post('register', 'AuthController@register');
+    $router->post('login', 'AuthController@login');
     $router->patch('archive/{id}', 'AuthController@archive');
     $router->put('update/{id}', 'AuthController@update');
     $router->delete('delete/{id}', 'AuthController@delete');
