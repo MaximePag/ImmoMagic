@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeOfHeatingTable extends Migration
+class CreateTypesOfHeatingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTypeOfHeatingTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeOfHeating', function (Blueprint $table) {
+        Schema::create('typesOfHeating', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreateTypeOfHeatingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeOfHeating');
+        Schema::dropIfExists('typesOfHeating');
     }
 }

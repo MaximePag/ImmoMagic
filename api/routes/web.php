@@ -41,3 +41,27 @@ $router->get('/Appointments/{id}', 'AppointmentsController@show');
 $router->post('/Appointments', 'AppointmentsController@create');
 $router->put('/Appointments/{id}', 'AppointmentsController@update');
 $router->delete('/Appointments/{id}', 'AppointmentsController@delete');
+
+// Routes pour la table pictures
+
+$router->get('Pictures', 'PicturesController@index' );
+$router->get('/Pictures/{id}', 'PicturesController@show');
+$router->post('/Pictures', 'PicturesController@create');
+$router->put('/Pictures/{id}', 'PicturesController@update');
+$router->delete('/Pictures/{id}', 'PicturesController@delete');
+
+// Routes pour la table typesOfContract
+
+$router->get('TypesOfContract', 'TypesOfContractController@index' );
+$router->get('/TypesOfContract/{id}', 'TypesOfContractController@show');
+$router->post('/TypesOfContract', 'TypesOfContractController@create');
+$router->put('/TypesOfContract/{id}', 'TypesOfContractController@update');
+$router->delete('/TypesOfContract/{id}', 'TypesOfContractController@delete');
+
+// Routes pour la table typesOfHeating
+
+$router->get('TypesOfHeating', 'TypesOfHeatingController@index' );
+$router->get('/TypesOfHeating/{id}', 'TypesOfHeatingController@show');
+$router->post('/TypesOfHeating', 'TypesOfHeatingController@create');
+$router->put('/TypesOfHeating/{id}', 'TypesOfHeatingController@update');
+$router->delete('/TypesOfHeating/{id}', 'TypesOfHeatingController@delete');
