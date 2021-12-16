@@ -18,7 +18,7 @@ $router->get('/', function () use ($router) {
     });
 });
 
-$router->group(['prefix' => ''], function () use ($router) {
+$router->group(['prefix' => 'user'], function () use ($router) {
     $router->get('index', 'AuthController@index');
     $router->get('show/{id}', 'AuthController@show');
     $router->post('register', 'AuthController@register');
@@ -26,12 +26,9 @@ $router->group(['prefix' => ''], function () use ($router) {
     $router->delete('delete/{id}', 'AuthController@delete');
 });
 
-
-
-
-//routes pour la table user
-// $router->get('user', 'UserController@index' );
-// $router->get('/user/{id}', 'UserController@show');
-// $router->post('/user', 'UserController@create');
-// $router->put('/user/{id}', 'UserController@update');
-// $router->delete('/user/{id}', 'UserController@delete');
+$router->group(['prefix' => 'appointmentssubjects'], function () use ($router) {
+    $router->get('show/{id}', 'appointmentssubjectsController@show');
+    $router->post('register', 'appointmentssubjectsController@register');
+    $router->put('update/{id}', 'appointmentssubjectsController@update');
+    $router->delete('delete/{id}', 'appointmentssubjectsController@delete');
+});

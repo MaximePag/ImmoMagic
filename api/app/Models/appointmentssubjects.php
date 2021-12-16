@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class appointmentssubjects extends Model implements AuthenticatableContract, AuthorizableContract
 {
+
+    public $timestamps = false;
     use Authenticatable, Authorizable, HasFactory;
     /**
      * The attributes that are mass assignable.
@@ -18,7 +20,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'lastname', 'firstname', 'email', 'adress', 'additionnalAdress', 'zipCode', 'city', 'profesionnalNumber'
+        'name'
     ];
 
     /**
@@ -27,6 +29,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password', 'archive', 'id'
+        'id'
     ];
 }
