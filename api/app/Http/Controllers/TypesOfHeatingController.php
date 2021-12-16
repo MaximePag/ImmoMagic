@@ -10,48 +10,66 @@ class TypesOfHeatingController extends Controller
     {
         $typesOfHeating = TypesOfHeating::all();
 
-        return response()->json($typesOfHeating);
+        return response()->json(['API_response' => 'OK', 'API_data' => $typesOfHeating], 200);
     }
     public function show($id)
     {
-        $typeOfHeating = TypesOfHeating::find($id);
+        try{
+            $typeOfHeating = TypesOfHeating::findOrFail($id);
 
-        return response()->json($typeOfHeating);
+            return response()->json(['API_response' => 'OK', 'API_data' => $typeOfHeating], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function create(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|string'
         ]);
+        try{
+            $typeOfHeating = new TypesOfHeating;
 
-        $typeOfHeating = new TypesOfHeating;
+            $typeOfHeating->name = $request->name;
+    
+            $typeOfHeating->save();
 
-        $typeOfHeating->name = $request->name;
-
-        $typeOfHeating->save();
-
-        return response()->json('gg wp bg');
+            return response()->json(['API_response' => 'Création effectuée'], 201);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Création impossible'], 409);
+        }
     }
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required|string'
         ]);
+        try{
+            $typeOfHeating = TypesOfHeating::findOrFail($id);
 
-        $typeOfHeating = TypesOfHeating::find($id);
+            $typeOfHeating->name = $request->name;
 
-        $typeOfHeating->name = $request->name;
+            $typeOfHeating->save();
 
-        $typeOfHeating->save();
-
-        return response()->json($typeOfHeating);
+            return response()->json(['API_response' => 'Modification effectuée', 'API_data' => $typeOfHeating], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function delete($id)
     {
-        $typeOfHeating = TypesOfHeating::find($id);
+        try{
+            $typeOfHeating = TypesOfHeating::findOrFail($id);
 
-        $typeOfHeating->delete();
+            $typeOfHeating->delete();
 
-        return response()->json('à plus dans l\'bus');
+            return response()->json(['API_response' => 'Suppression effectuée'], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
 }

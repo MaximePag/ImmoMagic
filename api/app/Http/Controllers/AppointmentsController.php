@@ -10,51 +10,87 @@ class AppointmentsController extends Controller
     {
         $appointments = Appointments::all();
 
-        return response()->json($appointments);
+        return response()->json(['API_response' => 'OK', 'API_data' => $appointments], 200);
     }
     public function show($id)
     {
-        $appointment = Appointments::find($id);
+        try{
+            $appointment = Appointments::findOrFail($id);
 
-        return response()->json($appointment);
+            return response()->json(['API_response' => 'OK', 'API_data' => $appointment], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function create(Request $request)
     {
+        //validate incoming request 
         $this->validate($request, [
-            'notes' => 'string'
+            'dateHour' => 'required',
+            'notes' => 'required|string'
         ]);
+        try{
+            $appointment = new Appointments;
 
-        $appointment = new Appointments;
+            $appointment->dateHour = $request->dateHour;
+            $appointment->notes = $request->notes;
+            $appointment->archived = false;
+    
+            $appointment->save();
 
-        $appointment->dateHour = date('Y-m-d H:i:s');
-        $appointment->notes = $request->notes;
-
-        $appointment->save();
-
-        return response()->json('gg wp bg');
+            return response()->json(['API_response' => 'Création effectuée'], 201);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Création impossible'], 409);
+        }
     }
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'dateHour' => 'required',
-            'notes' => 'string'
+            'notes' => 'required|string'
         ]);
+        try{
+            $appointment = Appointments::findOrFail($id);
 
-        $appointment = Appointments::find($id);
+            $appointment->dateHour = $request->dateHour;
+            $appointment->notes = $request->notes;
 
-        $appointment->dateHour = $request->dateHour;
-        $appointment->notes = $request->notes;
+            $appointment->save();
 
-        $appointment->save();
-
-        return response()->json($appointment);
+            return response()->json(['API_response' => 'Modification effectuée', 'API_data' => $appointment], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function delete($id)
     {
-        $appointment = Appointments::find($id);
+        try{
+            $appointment = Appointments::findOrFail($id);
 
-        $appointment->delete();
+            $appointment->delete();
 
-        return response()->json('à plus dans l\'bus');
+            return response()->json(['API_response' => 'Suppression effectuée'], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
+    }
+    public function archive($id)
+    {
+        try{
+            $appointment = Appointments::findOrFail($id);
+
+            $appointment->archived = true;
+    
+            $appointment->save();
+
+            return response()->json(['API_response' => 'OK', 'API_data' => $appointment], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
 }

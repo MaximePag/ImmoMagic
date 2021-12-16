@@ -10,13 +10,18 @@ class DocumentsController extends Controller
     {
         $documents = Documents::all();
 
-        return response()->json($documents);
+        return response()->json(['API_response' => 'OK', 'API_data' => $documents], 200);
     }
     public function show($id)
     {
-        $document = Documents::find($id);
+        try{
+            $document = Documents::findOrFail($id);
 
-        return response()->json($document);
+            return response()->json(['API_response' => 'OK', 'API_data' => $document], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function create(Request $request)
     {
@@ -25,16 +30,20 @@ class DocumentsController extends Controller
             'title' => 'required|string',
             'path' => 'required|string'
         ]);
+        try{
+            $document = new Documents;
 
-        $document = new Documents;
+            $document->title = $request->title;
+            $document->path = $request->path;
+            $document->archived = false;
+    
+            $document->save();
 
-        $document->title = $request->title;
-        $document->path = $request->path;
-        $document->archived = false;
-
-        $document->save();
-
-        return response()->json('gg wp bg');
+            return response()->json(['API_response' => 'Création effectuée'], 201);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Création impossible'], 409);
+        }
     }
     public function update(Request $request, $id)
     {
@@ -42,32 +51,46 @@ class DocumentsController extends Controller
             'title' => 'required|string',
             'path' => 'required|string'
         ]);
+        try{
+            $document = Documents::findOrFail($id);
 
-        $document = Documents::find($id);
+            $document->title = $request->title;
+            $document->path = $request->path;
 
-        $document->title = $request->title;
-        $document->path = $request->path;
+            $document->save();
 
-        $document->save();
-
-        return response()->json($document);
+            return response()->json(['API_response' => 'Modification effectuée', 'API_data' => $document], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function delete($id)
     {
-        $document = Documents::find($id);
+        try{
+            $document = Documents::findOrFail($id);
 
-        $document->delete();
+            $document->delete();
 
-        return response()->json('à plus dans l\'bus');
+            return response()->json(['API_response' => 'Suppression effectuée'], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function archive($id)
     {
-        $document = Documents::find($id);
+        try{
+            $document = Documents::findOrFail($id);
 
-        $document->archived = true;
+            $document->archived = true;
+    
+            $document->save();
 
-        $document->save();
-
-        return response()->json('archiveeed');
+            return response()->json(['API_response' => 'OK', 'API_data' => $document], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
 }

@@ -10,48 +10,66 @@ class TypesOfContractController extends Controller
     {
         $typesOfContract = TypesOfContract::all();
 
-        return response()->json($typesOfContract);
+        return response()->json(['API_response' => 'OK', 'API_data' => $typesOfContract], 200);
     }
     public function show($id)
     {
-        $typeOfContract = TypesOfContract::find($id);
+        try{
+            $typeOfContract = TypesOfContract::findOrFail($id);
 
-        return response()->json($typeOfContract);
+            return response()->json(['API_response' => 'OK', 'API_data' => $typeOfContract], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function create(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|string'
         ]);
+        try{
+            $typeOfContract = new TypesOfContract;
 
-        $typeOfContract = new TypesOfContract;
+            $typeOfContract->name = $request->name;
+    
+            $typeOfContract->save();
 
-        $typeOfContract->name = $request->name;
-
-        $typeOfContract->save();
-
-        return response()->json('gg wp bg');
+            return response()->json(['API_response' => 'Création effectuée'], 201);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Création impossible'], 409);
+        }
     }
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required|string'
         ]);
+        try{
+            $typeOfContract = TypesOfContract::findOrFail($id);
 
-        $typeOfContract = TypesOfContract::find($id);
+            $typeOfContract->name = $request->name;
 
-        $typeOfContract->name = $request->name;
+            $typeOfContract->save();
 
-        $typeOfContract->save();
-
-        return response()->json($typeOfContract);
+            return response()->json(['API_response' => 'Modification effectuée', 'API_data' => $typeOfContract], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function delete($id)
     {
-        $typeOfContract = TypesOfContract::find($id);
+        try{
+            $typeOfContract = TypesOfContract::findOrFail($id);
 
-        $typeOfContract->delete();
+            $typeOfContract->delete();
 
-        return response()->json('à plus dans l\'bus');
+            return response()->json(['API_response' => 'Suppression effectuée'], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
 }

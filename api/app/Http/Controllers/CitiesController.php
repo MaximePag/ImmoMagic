@@ -10,12 +10,17 @@ class CitiesController extends Controller
     {
         $cities = Cities::all();
 
-        return response()->json($cities);
+        return response()->json(['API_response' => 'OK', 'API_data' => $cities], 200);
     }
     public function show($id)
     {
-        $city = Cities::find($id);
+        try{
+            $city = Cities::findOrFail($id);
 
-        return response()->json($city);
+            return response()->json(['API_response' => 'OK', 'API_data' => $city], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
 }

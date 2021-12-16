@@ -10,48 +10,66 @@ class TypesOfWaterEvacuationController extends Controller
     {
         $typesOfWaterEvacuation = TypesOfWaterEvacuation::all();
 
-        return response()->json($typesOfWaterEvacuation);
+        return response()->json(['API_response' => 'OK', 'API_data' => $typesOfWaterEvacuation], 200);
     }
     public function show($id)
     {
-        $typeOfWaterEvacuation = TypesOfWaterEvacuation::find($id);
+        try{
+            $typeOfWaterEvacuation = TypesOfWaterEvacuation::findOrFail($id);
 
-        return response()->json($typeOfWaterEvacuation);
+            return response()->json(['API_response' => 'OK', 'API_data' => $typeOfWaterEvacuation], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function create(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|string'
         ]);
+        try{
+            $typeOfWaterEvacuation = new TypesOfWaterEvacuation;
 
-        $typeOfWaterEvacuation = new TypesOfWaterEvacuation;
+            $typeOfWaterEvacuation->name = $request->name;
+    
+            $typeOfWaterEvacuation->save();
 
-        $typeOfWaterEvacuation->name = $request->name;
-
-        $typeOfWaterEvacuation->save();
-
-        return response()->json('gg wp bg');
+            return response()->json(['API_response' => 'Création effectuée'], 201);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Création impossible'], 409);
+        }
     }
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required|string'
         ]);
+        try{
+            $typeOfWaterEvacuation = TypesOfWaterEvacuation::findOrFail($id);
 
-        $typeOfWaterEvacuation = TypesOfWaterEvacuation::find($id);
+            $typeOfWaterEvacuation->name = $request->name;
 
-        $typeOfWaterEvacuation->name = $request->name;
+            $typeOfWaterEvacuation->save();
 
-        $typeOfWaterEvacuation->save();
-
-        return response()->json($typeOfWaterEvacuation);
+            return response()->json(['API_response' => 'Modification effectuée', 'API_data' => $typeOfWaterEvacuation], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
     public function delete($id)
     {
-        $typeOfWaterEvacuation = TypesOfWaterEvacuation::find($id);
+        try{
+            $typeOfWaterEvacuation = TypesOfWaterEvacuation::findOrFail($id);
 
-        $typeOfWaterEvacuation->delete();
+            $typeOfWaterEvacuation->delete();
 
-        return response()->json('à plus dans l\'bus');
+            return response()->json(['API_response' => 'Suppression effectuée'], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
     }
 }
