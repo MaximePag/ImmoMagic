@@ -87,12 +87,23 @@ class AuthController extends Controller
         $user->zipCode = $request->input('zipCode');
         $user->city = $request->input('city');
         $user->profesionnalNumber = $request->input('profesionnalNumber');
-        $user->archive = true;
+
 
         $user->save();
 
         return response()->json($user);
 
+    }
+
+    public function archive($id)
+    {
+        $user = User::find($id);
+
+        $user->archive = true;
+
+        $user->save();
+
+        return response()->json('La fiche client a bien été archivée.');
     }
 
     public function delete($id)
