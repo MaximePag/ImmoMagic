@@ -23,6 +23,16 @@ $router->post('RealEstate', 'realestateController@createrealestate');
 $router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
 $router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
 
+// API route group
+$router->group(['prefix' => 'api'], function () use ($router) {
+    // Matches "/api/register
+   $router->post('register', 'AuthController@register');
+
+     // Matches "/api/login
+    $router->post('login', 'AuthController@login');
+});
+
+
 /* $router->group(['prefix' => ''], function () use ($router) {
     $router->post('createrealestate', 'realestateController@createrealestate');
 }); */
