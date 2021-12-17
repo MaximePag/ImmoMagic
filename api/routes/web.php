@@ -133,3 +133,11 @@ $router->post('TypesOfWaterEvacuation', 'TypesOfWaterEvacuationController@create
 $router->put('TypesOfWaterEvacuation/{id}', 'TypesOfWaterEvacuationController@update');
 $router->delete('TypesOfWaterEvacuation/{id}', 'TypesOfWaterEvacuationController@delete');
 
+/**
+ * Routers for Extras
+ */
+$router->get('/extras', 'ExtrasController@index');
+$router->get('/extras/{id}', 'ExtrasController@show');
+$router->post('/extras', 'ExtrasController@create');
+$router->put('/extras/{id}', 'ExtrasController@update');
+$router->delete('/extras/{id}', 'ExtrasController@delete');
