@@ -1,1 +1,0 @@
-Discobitch, Helmut Fritz, ta mère mange des frites !
