@@ -17,6 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('path');
+            $table->boolean('archived');
             $table->timestamps();
         });
     }
