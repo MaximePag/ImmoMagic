@@ -30,3 +30,11 @@
 .navbar img{
   width: 180px;
 }
+.home{
+  background-image: url(../img/home_bg.jpg);
+  background-size: cover;
+}
+.card, .card img{
+  border-top-right-radius: 15px !important;
+  border-top-left-radius: 15px !important;
+}
