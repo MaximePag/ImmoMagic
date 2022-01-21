@@ -14,6 +14,7 @@ function App() {
         <Route path="/contact" exact component={Contact} />
         <Route path="/register" exact component={Register} />
         <Route component={Http404} />
+        <Route path="/userProfile/{id}" exact component={UserProfile} />
       </Switch>
     </BrowserRouter>
   );
