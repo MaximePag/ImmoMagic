@@ -6,19 +6,25 @@ const Carousel = () => {
         <div id="home_slider" className="row">
             <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-touch="false" data-bs-interval="false">
                 <div className="carousel-inner">
-                    <div className="carousel-item active">
+                    <div className="carousel-item active mb-2">
                         <div className="card-group">
-                            <RealEstate/>
+                            <div className="row row-cols-1 row-cols-md-3 g-2">
+                                <RealEstate/>
+                            </div>
                         </div>
                     </div>
                     <div className="carousel-item mb-2">
                         <div className="card-group">
-                            <RealEstate/>
+                            <div className="row row-cols-1 row-cols-md-3 g-2">
+                                <RealEstate/>
+                            </div>
                         </div>
                     </div>
                     <div className="carousel-item mb-2">
                         <div className="card-group">
-                            <RealEstate/>
+                            <div className="row row-cols-1 row-cols-md-3 g-2">
+                                <RealEstate/>
+                            </div>
                         </div>
                     </div>
                 </div>
