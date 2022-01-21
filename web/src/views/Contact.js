@@ -88,7 +88,7 @@ import React from "react";
                                                 </div>
                                                 <div>
                                                     <label htmlFor={"object"}>Objet : </label>
-                                                    <select value={this.state.objcet} onChange={this.onQueryChange.bind(this)}>
+                                                    <select value={this.state.object} onChange={this.onQueryChange.bind(this)}>
                                                         <option value={"rdv"}>Rendez-vous</option>
                                                         <option value={"rent"}>Location</option>
                                                         <option value={"buy"}>Acheter</option>
