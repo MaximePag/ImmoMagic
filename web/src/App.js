@@ -5,6 +5,7 @@ import Home from "./views/Home";
 import Contact from "./views/Contact";
 import Register from "./views/Register";
 import Http404 from "./views/Http404";
+import Search from './views/Search';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/contact" exact component={Contact} />
+        <Route path="/rechercher" exact component={Search} />
         <Route path="/register" exact component={Register} />
         <Route component={Http404} />
         <Route path="/userProfile/{id}" exact component={UserProfile} />
