@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
     return (
         <div className="navbar">
-            <NavLink exact to="/" activeClassName="nav-active"><img src="./immomagic_logo.png" /></NavLink>
+            <NavLink exact to="/" activeClassName="nav-active"><img src="./img/immomagic_logo.png" /></NavLink>
             <NavLink exact to="/rechercher" activeClassName="nav-active">Rechercher <i className="fas fa-search" ></i></NavLink>
             <NavLink exact to="/rechercher" activeClassName="nav-active">Acheter</NavLink>
             <NavLink exact to="/rechercher" activeClassName="nav-active">Louer</NavLink>
