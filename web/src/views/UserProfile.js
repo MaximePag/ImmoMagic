@@ -40,14 +40,14 @@ const UserProfile = () => {
                         <h1 className={"text-center"} style={{color: "#e2aa19"}}><b>Vos informations : </b></h1>
                             <hr/>
                         <div className={"mb3 row"}>
-                            <div>Nom: {user["firstname"]}</div>
+                            {/* <div>Nom: {user["firstname"]}</div>
                             <div>Prénom : {user["lastname"]}</div>
                             <div> Adresse : {user["address"]}</div>
                             <div>{user["additionalAdress"]}</div>
                             <div>Code Postal: {user.zipCode}</div>
                             <div>Commune : {user.city}</div>
                             <div>Téléphone: {user.phoneNumber}</div>
-                            <div>Adresse mail: {user.mail}</div>
+                            <div>Adresse mail: {user.mail}</div> */}
                         </div>
                     </div>
                 </div>
