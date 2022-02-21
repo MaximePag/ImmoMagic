@@ -18,7 +18,7 @@ import React from "react";
             return (
                 <div className={"contact"}>
                     <Navbar/>
-                    <div class="card o-hidden border-0 shadow-lg m-5">
+                    <div class="card o-hidden border-2 shadow-lg m-5">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <h1 className={"text-center"} style={{color: "#e2aa19"}}><b>Nous contacter: </b></h1>
@@ -31,22 +31,18 @@ import React from "react";
                                     <br/>
                                     <tbody style={{justifyContent: 'center', alignItems: 'center'}}>
                                     <tr>
-                                        <td><h4><i className={"fas fa-phone-alt"}
-                                               style={{color: "#e2aa19"}}></i> 03.44.23.22.21</h4>
+                                        <td><h4><i className={"fas fa-phone-alt"} style={{color: "#e2aa19"}}/> 03.44.23.22.21</h4>
                                         </td>
-                                        <td><h4><i className={"far fa-address-card"}
-                                                  style={{color: "#e2aa19"}}></i> Notre agence: </h4></td>
+                                        <td><h4><i className={"far fa-address-card"} style={{color: "#e2aa19"}}/> Notre agence: </h4></td>
                                     </tr>
                                     <tr>
-                                        <td><h4><i className="fas fa-mobile-alt"
-                                               style={{color: "#e2aa19"}}></i> 06.05.04.03.02 </h4>
+                                        <td><h4><i className="fas fa-mobile-alt" style={{color: "#e2aa19"}}/> 06.05.04.03.02 </h4>
                                         </td>
                                         <td><h6> Campus Innovia</h6></td>
 
                                     </tr>
                                     <tr>
-                                        <td><h4><i className="far fa-envelope"
-                                               style={{color: "#e2aa19"}}></i> contact@immomagic.com</h4>
+                                        <td><h4><i className="far fa-envelope" style={{color: "#e2aa19"}}/> contact@immomagic.com</h4>
                                         </td>
                                         <td><h6>60400 NOYON</h6></td>
                                     </tr>
@@ -61,34 +57,40 @@ import React from "react";
                                     </tr>
                                     <tr>
                                         <td>
-                                            <form onSubmit={this.handleSubmit.bind(this)} id={"contactForm"} method={"POST"}  style={{marginLeft: "2em"}}>
+                                            <form onSubmit={this.handleSubmit.bind(this)} id={"contactForm"} method={"POST"}  style={{marginLeft: "6em"}}>
                                                 <div>
-                                                    <label htmlFor={"name"}>Nom : </label>
+                                                    <label htmlFor={"name"}>Nom :</label>
+                                                    <br/>
                                                     <input type={"text"}
                                                         value={this.state.name}
                                                         onChange={this.onNameChange.bind(this)}/>
                                                 </div>
                                                 <div>
                                                     <label htmlFor={"firstname"}>Prénom : </label>
+                                                    <br/>
                                                     <input type={"text"}
                                                            value={this.state.firstname}
                                                            onChange={this.onFirstnameChange.bind(this)}/>
                                                 </div>
                                                 <div>
                                                     <label htmlFor={"email"}>Adresse mail :</label>
+                                                    <br/>
                                                     <input type={"email"} className={"email"}
                                                            value={this.state.email}
                                                            onChange={this.onEmailChange.bind(this)}/>
                                                 </div>
                                                 <div>
                                                     <label htmlFor={"phone"}>Téléphone : </label>
+                                                    <br/>
                                                     <input type={"text"} className={"phone"}
                                                            value={this.state.phone}
                                                            onChange={this.onPhoneChange.bind(this)}/>
                                                 </div>
                                                 <div>
                                                     <label htmlFor={"object"}>Objet : </label>
+                                                    <br/>
                                                     <select value={this.state.object} onChange={this.onQueryChange.bind(this)}>
+                                                        <option>Selectionnez :</option>
                                                         <option value={"rdv"}>Rendez-vous</option>
                                                         <option value={"rent"}>Location</option>
                                                         <option value={"buy"}>Acheter</option>
@@ -99,11 +101,11 @@ import React from "react";
                                                 </div>
                                                 <div>
                                                     <label htmlFor={"query"}>Votre demande :
+                                                        <br/>
                                                         <textarea value={this.state.query} onChange={this.onQueryChange.bind(this)}/>
                                                     </label>
                                                 </div>
-                                                <button type="submit" style={{backgroundColor: "#e2aa19"}}>Envoyer
-                                                </button>
+                                                <button type={"submit"} style={{backgroundColor: "#e2aa19", paddingLeft: "center"}}>Envoyer</button>
                                             </form>
                                         </td>
                                         <td>
