@@ -9,6 +9,7 @@ const Navbar = () => {
             <NavLink exact to="/rechercher" activeClassName="nav-active">Acheter</NavLink>
             <NavLink exact to="/rechercher" activeClassName="nav-active">Louer</NavLink>
             <NavLink exact to="/vendre" activeClassName="nav-active">Vendre</NavLink>
+            <NavLink exact to="/biens" activeClassName="nav-active">vue bien</NavLink>
             <NavLink exact to="/contact" activeClassName="nav-active">Contact</NavLink>
             <NavLink exact to="/inscription" activeClassName="nav-active">S'inscrire <i className="fas fa-user-circle" ></i></NavLink>
         </div>
