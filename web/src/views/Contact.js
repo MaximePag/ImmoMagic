@@ -18,10 +18,10 @@ import React from "react";
             return (
                 <div className={"contact"}>
                     <Navbar/>
-                    <div class="card o-hidden border-2 shadow-lg m-5">
+                    <div class="card o-hidden border-2 box-shadow-lg m-5" id={"bow-shadow"}>
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
-                                <h1 className={"text-center"} style={{color: "#e2aa19"}}><b>Nous contacter: </b></h1>
+                                <h1 className={"text-center"} id={"yellowTitle"}><b>Nous contacter: </b></h1>
                                 <table className={"text-center"}>
                                     <thead className={"text-center"}>
                                     <tr>
@@ -29,27 +29,27 @@ import React from "react";
                                     </tr>
                                     </thead>
                                     <br/>
-                                    <tbody style={{justifyContent: 'center', alignItems: 'center'}}>
+                                    <tbody>
                                     <tr>
-                                        <td><h4><i className={"fas fa-phone-alt"} style={{color: "#e2aa19"}}/> 03.44.23.22.21</h4>
+                                        <td><h4><i className={"fas fa-phone-alt"} id={"yellowTitle"}/> 03.44.23.22.21</h4>
                                         </td>
-                                        <td><h4><i className={"far fa-address-card"} style={{color: "#e2aa19"}}/> Notre agence: </h4></td>
+                                        <td><h4><i className={"far fa-address-card"} id={"yellowTitle"}/> Notre agence: </h4></td>
                                     </tr>
                                     <tr>
-                                        <td><h4><i className="fas fa-mobile-alt" style={{color: "#e2aa19"}}/> 06.05.04.03.02 </h4>
+                                        <td><h4><i className="fas fa-mobile-alt" id={"yellowTitle"}/> 06.05.04.03.02 </h4>
                                         </td>
                                         <td><h6> Campus Innovia</h6></td>
 
                                     </tr>
                                     <tr>
-                                        <td><h4><i className="far fa-envelope" style={{color: "#e2aa19"}}/> contact@immomagic.com</h4>
+                                        <td><h4><i className="far fa-envelope" id={"yellowTitle"}/> contact@immomagic.com</h4>
                                         </td>
                                         <td><h6>60400 NOYON</h6></td>
                                     </tr>
                                         <br/>
                                     <tr>
                                         <td>
-                                            <h4 className={"text-center"} style={{color: "#e2aa19"}}><b>Formulaire de
+                                            <h4 className={"text-center"} id={"yellowTitle"}><b>Formulaire de
                                                 contact :</b></h4>
                                         </td>
                                         <td></td>
@@ -57,7 +57,7 @@ import React from "react";
                                     </tr>
                                     <tr>
                                         <td>
-                                            <form onSubmit={this.handleSubmit.bind(this)} id={"contactForm"} method={"POST"}  style={{marginLeft: "6em"}}>
+                                            <form onSubmit={this.handleSubmit.bind(this)} id={"contactForm"} method={"POST"}  id={"contactForm"}>
                                                 <div>
                                                     <label htmlFor={"name"}>Nom :</label>
                                                     <br/>
@@ -105,7 +105,7 @@ import React from "react";
                                                         <textarea value={this.state.query} onChange={this.onQueryChange.bind(this)}/>
                                                     </label>
                                                 </div>
-                                                <button type={"submit"} style={{backgroundColor: "#e2aa19", paddingLeft: "center"}}>Envoyer</button>
+                                                <button type={"submit"} id={"contactButton"}>Envoyer</button>
                                             </form>
                                         </td>
                                         <td>
