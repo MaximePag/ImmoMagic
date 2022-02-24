@@ -10,14 +10,14 @@ class Register extends React.Component {
   //Cette fonction est un composant React valide car elle accepte un seul argument « props » (qui signifie « propriétés ») contenant des données, et renvoie un élément React
   constructor(props) {
     super(props);
-    this.state = { name: "", password: "" };
+    this.state = { email: "", password: "" };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   //s'occupe de mettre à jour les champs quand on les modifie
   handleInputChange(event) {
-    this.setState({ value: event.target.name });
+    this.setState({ value: event.target.email });
     this.setState({ value: event.target.password });
   }
   //envoi la réponse du formulaire
@@ -33,7 +33,7 @@ class Register extends React.Component {
           <input
             type="text"
             placeholder="Nom"
-            value={this.state.name}
+            value={this.state.email}
             onChange={this.handleInputChange}
           />
           <input
@@ -42,7 +42,7 @@ class Register extends React.Component {
             value={this.state.password}
             onChange={this.handleInputChange}
           />
-          <input type="submit" Value="Envoyer" />
+          <input type="submit" Value={"Envoyer"} />
         </form>
       </div>
     );
