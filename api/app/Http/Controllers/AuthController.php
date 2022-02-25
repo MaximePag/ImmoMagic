@@ -2,37 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use  App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    }
+
+
+    /**public function index()
+    {
+        $user = User::all();
+        return response()->json($user);
+    }*/
+
     /**
      * Store a new user.
      *
      * @param  Request  $request
-     * @return Response
+     * @return JsonResponse
      */
-
-
-
-    public function index()
-    {
-        $user = User::all();
-        return response()->json($user);
-    }
-
     public function register(Request $request)
     {
-        //validate incoming request 
+        //validate incoming request
         $this->validate($request, [
             'lastname' => 'required|string',
             'firstname' => 'required|string',
             'phoneNumber' => 'required|string',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
+            'password' => 'required|string',
             'adress' => 'required|string',
             'additionnalAdress' => 'required|string',
             'zipCode' => 'required|string',
@@ -47,8 +50,7 @@ class AuthController extends Controller
             $user->firstname = $request->input('firstname');
             $user->phoneNumber = $request->input('phoneNumber');
             $user->email = $request->input('email');
-            $plainPassword = $request->input('password');
-            $user->password = app('hash')->make($plainPassword);
+            $user->password = app('hash')->make($request->input('password'));
             $user->adress = $request->input('adress');
             $user->additionnalAdress = $request->input('additionnalAdress');
             $user->zipCode = $request->input('zipCode');
@@ -59,71 +61,33 @@ class AuthController extends Controller
             $user->save();
 
             //return successful response
-            return response()->json(['user' => $user, 'message' => 'CREATED'], 201);
+            return response()->json([
+                    'entity' => 'user',
+                    'action' => 'create',
+                    'result' => 'success'
+            ], 201);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             //return error message
-            return response()->json(['message' => 'User Registration Failed!'], 409);
+            return response()->json([
+                'entity' => 'user',
+                'action' => 'create',
+                'result' => 'failed'
+            ], 409);
         }
 
     }
 
-    public function show($id)
-    {
-        $user = User::find($id);
-        return response()->json($user);
-    }
 
-    public function update(Request $request, $id)
-    {
-        $user = User::find($id);
-
-        $user->lastname = $request->input('lastname');
-        $user->firstname = $request->input('firstname');
-        $user->phoneNumber = $request->input('phoneNumber');
-        $user->email = $request->input('email');
-        $plainPassword = $request->input('password');
-        $user->password = app('hash')->make($plainPassword);
-        $user->adress = $request->input('adress');
-        $user->additionnalAdress = $request->input('additionnalAdress');
-        $user->zipCode = $request->input('zipCode');
-        $user->city = $request->input('city');
-        $user->profesionnalNumber = $request->input('profesionnalNumber');
-
-
-        $user->save();
-
-        return response()->json($user);
-
-    }
-    
-    public function archive($id)
-    {
-        $user = User::find($id);
-
-        $user->archive = true;
-
-        $user->save();
-
-        return response()->json('La fiche client a bien été archivée.');
-    }
-
-    public function delete($id)
-    {
-        $user = User::find($id);
-        $user->delete();
-
-        return response()->json('Fiche client bien supprimée');
-    }
-  /**
+    /**
      * Get a JWT via given credentials.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return Response
      */
     public function login(Request $request)
     {
-          //validate incoming request 
+          //validate incoming request
         $this->validate($request, [
             'email' => 'required|string',
             'password' => 'required|string',
@@ -136,5 +100,15 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+    }
+
+    /**
+     * Get user details.
+     *
+     * @return Response
+     */
+    public function me()
+    {
+        return response()->json(auth()->user());
     }
 }
