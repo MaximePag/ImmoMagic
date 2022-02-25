@@ -20,24 +20,28 @@ $router->get('/', function () use ($router) {
 });
 
 // get('objet'), ('controller@methode');
-$router->get('RealEstate', 'realestateController@showAllrealestateDetail' );
-$router->get('/RealEstate/{id}', 'realestateController@showrealestateDetail');
-$router->post('RealEstate', 'realestateController@createrealestate');
-$router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
-$router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
-
-// API route group
-$router->group(['prefix' => 'api'], function () use ($router) {
-    // Matches "/api/register
-   $router->post('register', 'AuthController@register');
-
-     // Matches "/api/login
-    $router->post('login', 'AuthController@login');
+$router->group(['middleware' => 'auth', 'prefix' => ''], function () use ($router) {
+    $router->get('/RealEstate', 'RealEstateController@showAllRealEstateDetail');
+    $router->get('/RealEstate/{id}', 'RealEstateController@showRealEstateDetail');
+    $router->post('/RealEstate', 'RealEstateController@createRealEstate');
+    $router->put('/RealEstate/{id}', 'RealEstateController@updateRealEstate');
+    $router->delete('/RealEstate/{id}', 'RealEstateController@deleteRealEstate');
 });
+// API route group
+// $router->group(['prefix' => 'api'], function () use ($router) {
+//     // Matches "/api/register
+//    $router->post('register', 'AuthController@register');
 
+//      // Matches "/api/login
+//     $router->post('login', 'AuthController@login');
+// });
+
+$router->post('register', 'AuthController@register');
+     // Matches "/api/login
+$router->post('login', 'AuthController@login');
 
 /* $router->group(['prefix' => ''], function () use ($router) {
-    $router->post('createrealestate', 'realestateController@createrealestate');
+    $router->post('createRealEstate', 'RealEstateController@createRealEstate');
 }); */
 
 
@@ -64,11 +68,11 @@ $router->group(['prefix' => 'appointmentssubjects'], function () use ($router) {
     $router->delete('delete/{id}', 'appointmentssubjectsController@delete');
 });
 
-$router->group(['prefix' => 'typeofrealestates'], function () use ($router) {
-    $router->get('show/{id}', 'typeofrealestatesController@show');
-    $router->post('register', 'typeofrealestatesController@register');
-    $router->put('update/{id}', 'typeofrealestatesController@update');
-    $router->delete('delete/{id}', 'typeofrealestatesController@delete');
+$router->group(['prefix' => 'typeofRealEstates'], function () use ($router) {
+    $router->get('show/{id}', 'typeofRealEstatesController@show');
+    $router->post('register', 'typeofRealEstatesController@register');
+    $router->put('update/{id}', 'typeofRealEstatesController@update');
+    $router->delete('delete/{id}', 'typeofRealEstatesController@delete');
 });
 
 // Routes pour la table documents

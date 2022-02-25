@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class typeofrealestates extends Model implements AuthenticatableContract, AuthorizableContract
+class typeofRealEstates extends Model implements AuthenticatableContract, AuthorizableContract
 {
 
     public $timestamps = false;

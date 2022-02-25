@@ -13,7 +13,7 @@ class CreateRealEstateTable extends Migration
      */
     public function up()
     {
-        Schema::create('realEstate', function (Blueprint $table) {
+        Schema::create('RealEstate', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('adress');
             $table->integer('price');
@@ -46,6 +46,6 @@ class CreateRealEstateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('realEstate');
+        Schema::dropIfExists('RealEstate');
     }
 }
