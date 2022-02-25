@@ -8,44 +8,72 @@ class Register extends React.Component {
   }
 } */
   //Cette fonction est un composant React valide car elle accepte un seul argument « props » (qui signifie « propriétés ») contenant des données, et renvoie un élément React
+
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { email: '',
+                  password: '' ,
+                  adress: '',
+                  firstname: '',
+                  lastname: '',
+                  phoneNumber: '',
+                  additionnalAdress: '',
+                  zipCode: '',
+                  profesionnalNumber: ''};
 
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   //s'occupe de mettre à jour les champs quand on les modifie
-  handleInputChange(event) {
-    this.setState({ value: event.target.email });
-    this.setState({ value: event.target.password });
+  handleChange(event) {
+    var value = event.target.value;
+    this.setState({
+      firstname: value ,
+      lastname: value ,
+      adress: value ,
+      phoneNumber: value ,
+      additionnalAdress: value ,
+      zipCode: value ,
+      profesionnalNumber: value ,
+      password: value ,
+    });
   }
-  //envoi la réponse du formulaire
-  handleSubmit(event) {
-    alert("mon retour :" + this.state.value);
-    event.preventDefault();
-  }
+//envoi la réponse du formulaire
   render() {
     return (
-      <div>
-        <Navbar />
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Nom"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-          />
-          <input
-            type="text"
-            placeholder="mot de passe"
-            value={this.state.password}
-            onChange={this.handleInputChange}
-          />
-          <input type="submit" Value={"Envoyer"} />
-        </form>
-      </div>
+        <div>
+          <Navbar />
+          <form onSubmit={this.handleSubmit(this)} id={"registerForm"} method={"POST"}>
+
+            <div>
+              <input type={"text"} placeholder="adress" value={this.state.adress} onChange={this.handleInputChange}/>
+            </div>
+            <div>
+              <input type={"text"} placeholder="firstname" value={this.state.firstname} onChange={this.handleInputChange}/>
+            </div>
+            <div>
+              <input type={"text"} placeholder="lastname" value={this.state.lastname} onChange={this.handleInputChange}/>
+            </div>
+            <div>
+              <input type={"text"} placeholder="phoneNumber" value={this.state.phoneNumber} onChange={this.handleInputChange}/>
+            </div>
+            <div>
+              <input type={"text"} placeholder="additionnalAdress" value={this.state.additionnalAdress} onChange={this.handleInputChange}/>
+            </div>
+            <div>
+              <input type={"text"} placeholder="zipCode" value={this.state.zipCode} onChange={this.handleInputChange}/>
+            </div>
+            <div>
+              <input type={"text"} placeholder="profesionnalNumber" value={this.state.profesionnalNumber} onChange={this.handleInputChange}/>
+            </div>
+            <div>
+              <input type={"text"} placeholder={"Mot de passe"} value={this.state.password} onChange={this.handleInputChange}/>
+            </div>
+            <input type="submit" Value="Envoyer" />
+          </form>
+        </div>
     );
   }
 }
+
 export default Register;

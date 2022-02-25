@@ -11,6 +11,7 @@ const Navbar = () => {
             <NavLink exact to="/vendre" activeClassName="nav-active">Vendre</NavLink>
             <NavLink exact to="/contact" activeClassName="nav-active">Contact</NavLink>
             <NavLink exact to="/inscription" activeClassName="nav-active">S'inscrire <i className="fas fa-user-circle" /></NavLink>
+            <NavLink exact to="/login" activeClassName="nav-active">Me connecter <i className="fas fa-user-circle" /></NavLink>
         </div>
     );
 };
