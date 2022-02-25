@@ -1,6 +1,8 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+use Laravel\Lumen\Routing\Router;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +15,41 @@
 |
 */
 
+
+/** @var Router $router */
 $router->get('/', function () use ($router) {
-    $router->get('/', function () use ($router) {
-        return phpinfo();
-    });
+    return $router->app->version();
 });
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+$router->group(['middleware' => 'auth','prefix' => 'api'], function ($router)
+{
+    $router->get('me', 'AuthController@me');
+});
 
-
-$router->group(['prefix' => 'user'], function () use ($router) {
-    $router->get('index', 'AuthController@index');
-    $router->get('show/{id}', 'AuthController@show');
+// API route group
+$router->group(['prefix' => 'api'], function () use ($router)
+{
     $router->post('register', 'AuthController@register');
     $router->post('login', 'AuthController@login');
+});
+
+// get('objet'), ('controller@methode');
+$router->get('RealEstate', 'realestateController@showAllrealestateDetail' );
+$router->get('/RealEstate/{id}', 'realestateController@showrealestateDetail');
+$router->post('RealEstate', 'realestateController@createrealestate');
+$router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
+$router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
+
+/* $router->group(['prefix' => ''], function () use ($router) {
+    $router->post('createrealestate', 'realestateController@createrealestate');
+}); */
+
+
+/** @var Router $router */
+
+$router->group(['middleware'=>'auth.jwt', 'prefix' => 'user'],  function () use ($router) {
+    $router->get('index', 'AuthController@index');
+    $router->get('show/{id}', 'AuthController@show');
     $router->patch('archive/{id}', 'AuthController@archive');
     $router->put('update/{id}', 'AuthController@update');
     $router->delete('delete/{id}', 'AuthController@delete');
@@ -34,6 +57,7 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     $router->get('users/{id}', 'UserController@singleUser');
     $router->get('users', 'UserController@allUsers');
 });
+
 
 $router->group(['prefix' => 'appointmentssubjects'], function () use ($router) {
     $router->get('show/{id}', 'appointmentssubjectsController@show');

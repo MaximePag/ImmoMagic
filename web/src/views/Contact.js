@@ -57,7 +57,7 @@ import React from "react";
                                     </tr>
                                     <tr>
                                         <td>
-                                            <form onSubmit={this.handleSubmit.bind(this)} id={"contactForm"} method={"POST"}  id={"contactForm"}>
+                                            <form onSubmit={this.handleSubmit.bind(this)} id={"contactForm"} method={"POST"}>
                                                 <div>
                                                     <label htmlFor={"name"}>Nom :</label>
                                                     <br/>

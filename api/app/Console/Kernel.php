@@ -12,9 +12,9 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        //
-    ];
+    /*protected $routeMiddleware = [
+        'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class
+    ];*/
 
     /**
      * Define the application's command schedule.
@@ -26,4 +26,5 @@ class Kernel extends ConsoleKernel
     {
         //
     }
+
 }
