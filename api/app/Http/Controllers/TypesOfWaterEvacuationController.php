@@ -1,21 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\TypesOfWaterEvacuation;
+use App\Models\TypeOfWaterEvacuation;
 use Illuminate\Http\Request;
 
-class TypesOfWaterEvacuationController extends Controller
+class TypeOfWaterEvacuationController extends Controller
 {
     public function index()
     {
-        $typesOfWaterEvacuation = TypesOfWaterEvacuation::all();
+        $typeOfWaterEvacuation = TypeOfWaterEvacuation::all();
 
-        return response()->json(['API_response' => 'OK', 'API_data' => $typesOfWaterEvacuation], 200);
+        return response()->json(['API_response' => 'OK', 'API_data' => $typeOfWaterEvacuation], 200);
     }
     public function show($id)
     {
         try{
-            $typeOfWaterEvacuation = TypesOfWaterEvacuation::findOrFail($id);
+            $typeOfWaterEvacuation = TypeOfWaterEvacuation::findOrFail($id);
 
             return response()->json(['API_response' => 'OK', 'API_data' => $typeOfWaterEvacuation], 200);
         }
@@ -29,7 +29,7 @@ class TypesOfWaterEvacuationController extends Controller
             'name' => 'required|string'
         ]);
         try{
-            $typeOfWaterEvacuation = new TypesOfWaterEvacuation;
+            $typeOfWaterEvacuation = new TypeOfWaterEvacuation;
 
             $typeOfWaterEvacuation->name = $request->name;
     
@@ -47,7 +47,7 @@ class TypesOfWaterEvacuationController extends Controller
             'name' => 'required|string'
         ]);
         try{
-            $typeOfWaterEvacuation = TypesOfWaterEvacuation::findOrFail($id);
+            $typeOfWaterEvacuation = TypeOfWaterEvacuation::findOrFail($id);
 
             $typeOfWaterEvacuation->name = $request->name;
 
@@ -62,7 +62,7 @@ class TypesOfWaterEvacuationController extends Controller
     public function delete($id)
     {
         try{
-            $typeOfWaterEvacuation = TypesOfWaterEvacuation::findOrFail($id);
+            $typeOfWaterEvacuation = TypeOfWaterEvacuation::findOrFail($id);
 
             $typeOfWaterEvacuation->delete();
 

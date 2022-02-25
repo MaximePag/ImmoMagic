@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use  App\Models\typeofrealestates;
+use  App\Models\typesofrealestates;
 
 
-class typeofrealestatesController extends Controller
+class typesofrealestatesController extends Controller
 {
     /**
      * Store a new user.
@@ -23,42 +23,42 @@ class typeofrealestatesController extends Controller
 
     try {
 
-        $typeofrealestates = new typeofrealestates;
-        $typeofrealestates->name = $request->input('name');
+        $typesofrealestates = new typesofrealestates;
+        $typesofrealestates->name = $request->input('name');
 
-        $typeofrealestates->save();
+        $typesofrealestates->save();
     
 
             //return successful response
-            return response()->json(['typeofrealestates' => $typeofrealestates, 'message' => 'CREATED'], 201);
+            return response()->json(['typesofrealestates' => $typesofrealestates, 'message' => 'CREATED'], 201);
 
      } catch (\Exception $e) {
             //return error message
-             return response()->json(['message' => 'typeofrealestates Registration Failed!'], 409);
+             return response()->json(['message' => 'typesofrealestates Registration Failed!'], 409);
          }
     }
     
     public function show($id)
     {
-        $typeofrealestates = typeofrealestates::find($id);
-        return response()->json($typeofrealestates);
+        $typesofrealestates = typesofrealestates::find($id);
+        return response()->json($typesofrealestates);
     }
 
     public function update(Request $request, $id){
 
-        $typeofrealestates = typeofrealestates::find($id);
+        $typesofrealestates = typesofrealestates::find($id);
 
-        $typeofrealestates->name = $request->input('name');
+        $typesofrealestates->name = $request->input('name');
 
-        $typeofrealestates->save();
+        $typesofrealestates->save();
 
-        return response()->json($typeofrealestates);
+        return response()->json($typesofrealestates);
     }
 
     public function delete($id)
     {
-        $typeofrealestates = typeofrealestates::find($id);
-        $typeofrealestates->delete();
+        $typesofrealestates = typesofrealestates::find($id);
+        $typesofrealestates->delete();
 
         return response()->json('Fiche client supprimé');
     }

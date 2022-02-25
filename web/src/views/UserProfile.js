@@ -11,7 +11,7 @@ const UserProfile = () => {
     const [UserProfile, setUserProfile] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/profile/').then((apiDatas) => setUserProfile(apiDatas.data));
+        axios.get('http://localhost:8005/profile/').then((apiDatas) => setUserProfile(apiDatas.data));
 }, []);
 
    /*const [user, setUser] = useState({});

@@ -1,87 +1,76 @@
 <?php
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
 use App\Models\Extras;
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Validation\ValidationException;
-use Laravel\Lumen\Http\Request;
+use Illuminate\Http\Request;
 
 class ExtrasController extends Controller
 {
-    /**
-     * @return JsonResponse
-     */
     public function index()
     {
         $extras = Extras::all();
-        return response()->json($extras);
-    }
 
-    /**
-     * @param $id
-     * @return JsonResponse
-     */
+        return response()->json(['API_response' => 'OK', 'API_data' => $extras], 200);
+    }
     public function show($id)
     {
-        $extra = Extras::find($id);
-        return response()->json($extra);
-    }
+        try{
+            $extra = Extras::findOrFail($id);
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     * @throws ValidationException
-     */
-    public function create(Request $request): JsonResponse
+            return response()->json(['API_response' => 'OK', 'API_data' => $extra], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
+    }
+    public function create(Request $request)
+    {
+        //validate incoming request 
+        $this->validate($request, [
+            'name' => 'required|string'
+        ]);
+        try{
+            $extra = new Extras;
+
+            $extra->name = $request->input('name');
+    
+            $extra->save();
+
+            return response()->json(['API_response' => 'Création effectuée'], 201);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Création impossible'], 409);
+        }
+    }
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required|string'
         ]);
+        try{
+            $extra = Extras::findOrFail($id);
 
-        try {
-
-            $extra = new Extras();
-
-            $extra->name = $request->name;
+            $extra->name = $request->input('name');
 
             $extra->save();
 
-            return response()->json(['extra bien enregistré' => $extra, 'message' => 'extra bien enregistré'], 201);
-        } catch (Exception) {
-            return response()->json(['message' => 'ERROR'], 409);
+            return response()->json(['API_response' => 'Modification effectuée', 'API_data' => $extra], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
         }
     }
-
-    /**
-     * @param Request $request
-     * @param $id
-     * @return JsonResponse
-     */
-    public function update(Request $request, $id): JsonResponse
+    public function delete($id)
     {
-        $extra = Extras::find($id);
+        try{
+            $extra = Extras::findOrFail($id);
 
-        $extra->name = $request->name;
+            $extra->delete();
 
-        $extra->save();
-
-        return response()->json($extra);
-    }
-
-    /**
-     * @param $id
-     * @return JsonResponse
-     */
-    public function delete($id): JsonResponse
-    {
-        try {
-            $extra = Extras::find($id);
-            $extra->update(['archived' => true]);
-
-            return response()->json('extra à été archivé', 201);
-        } catch (Exception) {
-            return response()->json('extra non trouvé', 404);
+            return response()->json(['API_response' => 'Suppression effectuée'], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
         }
     }
 }

@@ -13,11 +13,17 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documents', function (Blueprint $table) {
+        Schema::create('g5e1D_documents', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('path');
             $table->boolean('archived');
+
+            $table->foreign('id_g5e1D_users')
+                ->references('id')
+                ->on('g5e1D_users')
+                ->onDelete('cascade');
+                
             $table->timestamps();
         });
     }
@@ -29,6 +35,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('g5e1D_documents');
     }
 }

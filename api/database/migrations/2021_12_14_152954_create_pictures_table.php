@@ -13,9 +13,15 @@ class CreatePicturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pictures', function (Blueprint $table) {
+        Schema::create('g5e1D_pictures', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('path');
+
+            $table->foreign('id_g5e1D_realEstate')
+                ->references('id')
+                ->on('g5e1D_realEstate')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreatePicturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pictures');
+        Schema::dropIfExists('g5e1D_pictures');
     }
 }

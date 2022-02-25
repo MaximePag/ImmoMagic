@@ -18,10 +18,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable;
     
-    protected $table = 'users';
+    protected $table = 'g5e1D_users';
 
     protected $fillable = [
-        'lastname', 'firstname', 'email', 'adress', 'additionnalAdress', 'zipCode', 'city', 'profesionnalNumber'
+        'lastname', 'firstname', 'mail', 'address', 'zipCode', 'city', 'id_g5e1D_roles'
     ];
 
     /**
@@ -33,23 +33,4 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password', 'archive', 'id'
     ];
 
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 }

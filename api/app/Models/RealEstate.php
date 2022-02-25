@@ -13,14 +13,15 @@ class RealEstate extends Model implements AuthenticatableContract, AuthorizableC
 {
     use Authenticatable, Authorizable, HasFactory;
 
-    protected $table = 'realEstate';
+    protected $table = 'g5e1D_realEstate';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'adress', 'price', 'expenses', 'description', 'numberOfViews', 'livingArea', 'landArea', 'livingRoomArea', 'roomNumber', 'bedroomNumber', 'bathroomNumber', 'toiletNumber', 'floorNumber', 'garage', 'parking', 'constructionYear', 'worksToBeDone', 'GES', 'DPE', 'archives'
+        'id', 'address', 'price', 'expenses', 'description', 'numberOfViews', 'livingArea', 'landArea', 'roomNumber', 'bedroomNumber', 'bathroomNumber', 'toiletNumber', 'floorNumber', 'constructionYear', 'worksToBeDone', 'GES', 'DPE', 'archived', 
+        'id_g5e1D_typeOfRealEstate', 'id_g5e1D_typeOfWaterEvacuation', 'id_g5e1D_typeOfContract', 'id_g5e1D_cities', 'id_g5e1D_status'
     ];
 
     /**

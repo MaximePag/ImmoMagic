@@ -8,7 +8,7 @@ import React from "react";
                 name: '',
                 firstname: '',
                 phone: '',
-                email: '',
+                mail: '',
                 object: '',
                 query: ''
             }
@@ -18,7 +18,7 @@ import React from "react";
             return (
                 <div className={"contact"}>
                     <Navbar/>
-                    <div class="card o-hidden border-2 box-shadow-lg m-5" id={"bow-shadow"}>
+                    <div class="card o-hidden border-2 box-shadow-lg m-5 box-shadow">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <h1 className={"text-center"} id={"yellowTitle"}><b>Nous contacter: </b></h1>
@@ -136,7 +136,7 @@ import React from "react";
         }
 
         onEmailChange(event) {
-            this.setState({email: event.target.value})
+            this.setState({mail: event.target.value})
         }
 
         onObjectChange(event) {

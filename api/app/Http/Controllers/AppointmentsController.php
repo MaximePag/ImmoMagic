@@ -28,13 +28,21 @@ class AppointmentsController extends Controller
         //validate incoming request 
         $this->validate($request, [
             'dateHour' => 'required',
-            'notes' => 'required|string'
+            'notes' => 'required|string',
+            'id_g5e1D_users' => 'required',
+            'id_g5e1D_realEstate' => 'required',
+            'id_g5e1D_appointmentsSubjects' => 'required',
+            'id_g5e1D_users_agentsCanHaveAppointments' => 'required'
         ]);
         try{
             $appointment = new Appointments;
 
-            $appointment->dateHour = $request->dateHour;
-            $appointment->notes = $request->notes;
+            $appointment->dateHour = $request->input('dateHour');
+            $appointment->notes = $request->input('notes');
+            $appointment->id_g5e1D_users = $request->input('id_g5e1D_users');
+            $appointment->id_g5e1D_realEstate = $request->input('id_g5e1D_realEstate');
+            $appointment->id_g5e1D_appointmentsSubjects = $request->input('id_g5e1D_appointmentsSubjects');
+            $appointment->id_g5e1D_users_agentsCanHaveAppointments = $request->input('id_g5e1D_users_agentsCanHaveAppointments');
             $appointment->archived = false;
     
             $appointment->save();
@@ -49,13 +57,21 @@ class AppointmentsController extends Controller
     {
         $this->validate($request, [
             'dateHour' => 'required',
-            'notes' => 'required|string'
+            'notes' => 'required|string',
+            'id_g5e1D_users' => 'required',
+            'id_g5e1D_realEstate' => 'required',
+            'id_g5e1D_appointmentsSubjects' => 'required',
+            'id_g5e1D_users_agentsCanHaveAppointments' => 'required'
         ]);
         try{
             $appointment = Appointments::findOrFail($id);
 
-            $appointment->dateHour = $request->dateHour;
-            $appointment->notes = $request->notes;
+            $appointment->dateHour = $request->input('dateHour');
+            $appointment->notes = $request->input('notes');
+            $appointment->id_g5e1D_users = $request->input('id_g5e1D_users');
+            $appointment->id_g5e1D_realEstate = $request->input('id_g5e1D_realEstate');
+            $appointment->id_g5e1D_appointmentsSubjects = $request->input('id_g5e1D_appointmentsSubjects');
+            $appointment->id_g5e1D_users_agentsCanHaveAppointments = $request->input('id_g5e1D_users_agentsCanHaveAppointments');
 
             $appointment->save();
 
@@ -87,7 +103,7 @@ class AppointmentsController extends Controller
     
             $appointment->save();
 
-            return response()->json(['API_response' => 'OK', 'API_data' => $appointment], 200);
+            return response()->json(['API_response' => 'Archivé', 'API_data' => $appointment], 200);
         }
         catch (\Exception $e){
             return response()->json(['API_response' => 'Non trouvé'], 404);

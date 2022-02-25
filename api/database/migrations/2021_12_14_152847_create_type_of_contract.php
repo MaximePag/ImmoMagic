@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypesOfContract extends Migration
+class CreateTypeOfContract extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTypesOfContract extends Migration
      */
     public function up()
     {
-        Schema::create('typesOfContract', function (Blueprint $table) {
+        Schema::create('g5e1D_typeOfContract', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreateTypesOfContract extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typesOfContract');
+        Schema::dropIfExists('g5e1D_typeOfContract');
     }
 }

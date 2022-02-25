@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypesOfWaterEvacuationTable extends Migration
+class CreateTypeOfHeatingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTypesOfWaterEvacuationTable extends Migration
      */
     public function up()
     {
-        Schema::create('typesOfWaterEvacuation', function (Blueprint $table) {
+        Schema::create('g5e1D_typeOfHeating', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreateTypesOfWaterEvacuationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typesOfWaterEvacuation');
+        Schema::dropIfExists('g5e1D_typeOfHeating');
     }
 }

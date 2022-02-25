@@ -13,7 +13,7 @@ class CreateAppointmentsSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointmentsSubjects', function (Blueprint $table) {
+        Schema::create('g5e1D_appointmentsSubjects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreateAppointmentsSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointmentsSubjects');
+        Schema::dropIfExists('g5e1D_appointmentsSubjects');
     }
 }

@@ -1,21 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\TypesOfContract;
+use App\Models\TypeOfContract;
 use Illuminate\Http\Request;
 
-class TypesOfContractController extends Controller
+class TypeOfContractController extends Controller
 {
     public function index()
     {
-        $typesOfContract = TypesOfContract::all();
+        $typeOfContract = TypeOfContract::all();
 
-        return response()->json(['API_response' => 'OK', 'API_data' => $typesOfContract], 200);
+        return response()->json(['API_response' => 'OK', 'API_data' => $typeOfContract], 200);
     }
     public function show($id)
     {
         try{
-            $typeOfContract = TypesOfContract::findOrFail($id);
+            $typeOfContract = TypeOfContract::findOrFail($id);
 
             return response()->json(['API_response' => 'OK', 'API_data' => $typeOfContract], 200);
         }
@@ -29,7 +29,7 @@ class TypesOfContractController extends Controller
             'name' => 'required|string'
         ]);
         try{
-            $typeOfContract = new TypesOfContract;
+            $typeOfContract = new TypeOfContract;
 
             $typeOfContract->name = $request->name;
     
@@ -47,7 +47,7 @@ class TypesOfContractController extends Controller
             'name' => 'required|string'
         ]);
         try{
-            $typeOfContract = TypesOfContract::findOrFail($id);
+            $typeOfContract = TypeOfContract::findOrFail($id);
 
             $typeOfContract->name = $request->name;
 
@@ -62,7 +62,7 @@ class TypesOfContractController extends Controller
     public function delete($id)
     {
         try{
-            $typeOfContract = TypesOfContract::findOrFail($id);
+            $typeOfContract = TypeOfContract::findOrFail($id);
 
             $typeOfContract->delete();
 

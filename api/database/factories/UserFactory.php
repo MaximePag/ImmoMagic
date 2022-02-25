@@ -23,7 +23,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'mail' => $this->faker->unique()->safeEmail,
         ];
     }
 }

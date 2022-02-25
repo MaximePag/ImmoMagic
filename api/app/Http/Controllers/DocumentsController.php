@@ -28,13 +28,15 @@ class DocumentsController extends Controller
         //validate incoming request 
         $this->validate($request, [
             'title' => 'required|string',
-            'path' => 'required|string'
+            'path' => 'required|string',
+            'id_g5e1D_users' => 'required'
         ]);
         try{
             $document = new Documents;
 
-            $document->title = $request->title;
-            $document->path = $request->path;
+            $document->title = $request->input('title');
+            $document->path = $request->input('path');
+            $document->id_g5e1D_users = $request->input('id_g5e1D_users');
             $document->archived = false;
     
             $document->save();
@@ -49,13 +51,15 @@ class DocumentsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string',
-            'path' => 'required|string'
+            'path' => 'required|string',
+            'id_g5e1D_users' => 'required'
         ]);
         try{
             $document = Documents::findOrFail($id);
 
-            $document->title = $request->title;
-            $document->path = $request->path;
+            $document->title = $request->input('title');
+            $document->path = $request->input('path');
+            $document->id_g5e1D_users = $request->input('id_g5e1D_users');
 
             $document->save();
 
@@ -87,7 +91,7 @@ class DocumentsController extends Controller
     
             $document->save();
 
-            return response()->json(['API_response' => 'OK', 'API_data' => $document], 200);
+            return response()->json(['API_response' => 'Archivé', 'API_data' => $document], 200);
         }
         catch (\Exception $e){
             return response()->json(['API_response' => 'Non trouvé'], 404);

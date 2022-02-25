@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  App\Models\RealEstate;
 
-class realestateController extends Controller
+class RealEstateController extends Controller
 {
     /**
      * Store a new realEsate.
@@ -13,63 +13,127 @@ class realestateController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function createrealestate(Request $request)
+    public function create(Request $request)
     {
-        //validate incoming request 
-            $this->validate($request, [
-            'adress' => 'required|string',
+    //validate incoming request 
+        $this->validate($request, [
+            'address' => 'required|string',
             'price' => 'required',
             'expenses' => 'required',
             'description' => 'required|string',
             'numberOfViews' => 'required',
             'livingArea' => 'required',
             'landArea' => 'required',
-            'livingRoomArea' => 'required',
             'roomNumber' => 'required',
             'bedroomNumber' => 'required',
             'bathroomNumber' => 'required',
             'toiletNumber' => 'required',
             'floorNumber' => 'required',
-
-
-
             'GES' => 'required',
             'DPE' => 'required',
+            'id_g5e1D_typeOfRealEstate' => 'required',
+            'id_g5e1D_typeOfWaterEvacuation' => 'required',
+            'id_g5e1D_typeOfContract' => 'required',
+            'id_g5e1D_cities' => 'required',
+            'id_g5e1D_status' => 'required',
 
-            ]);
+        ]);
 
-            try {
-                $realestate = new realestate;
-                $realestate->adress = $request->input('adress');
-                $realestate->price = $request->input('price');
-                $realestate->expenses = $request->input('expenses');
-                $realestate->description = $request->input('description');
-                $realestate->numberOfViews = $request->input('numberOfViews');
-                $realestate->livingArea = $request->input('livingArea');
-                $realestate->landArea = $request->input('landArea');
-                $realestate->livingRoomArea = $request->input('livingRoomArea');
-                $realestate->roomNumber = $request->input('roomNumber');
-                $realestate->bedroomNumber = $request->input('bedroomNumber');
-                $realestate->bathroomNumber = $request->input('bathroomNumber');
-                $realestate->toiletNumber = $request->input('toiletNumber');
-                $realestate->floorNumber = $request->input('floorNumber');
-                $realestate->garage = false;
-                $realestate->parking = false;
-                $realestate->constructionYear = $request->input('constructionYear');
-                $realestate->worksToBeDone = false;
-                $realestate->GES = $request->input('GES');
-                $realestate->DPE = $request->input('DPE');
-                $realestate->archives = false;
+        try {
+            $realestate = new RealEstate;
+            
+            $realestate->address = $request->input('address');
+            $realestate->price = $request->input('price');
+            $realestate->expenses = $request->input('expenses');
+            $realestate->description = $request->input('description');
+            $realestate->numberOfViews = $request->input('numberOfViews');
+            $realestate->livingArea = $request->input('livingArea');
+            $realestate->landArea = $request->input('landArea');
+            $realestate->roomNumber = $request->input('roomNumber');
+            $realestate->bedroomNumber = $request->input('bedroomNumber');
+            $realestate->bathroomNumber = $request->input('bathroomNumber');
+            $realestate->toiletNumber = $request->input('toiletNumber');
+            $realestate->floorNumber = $request->input('floorNumber');
+            $realestate->constructionYear = $request->input('constructionYear');
+            $realestate->worksToBeDone = false;
+            $realestate->GES = $request->input('GES');
+            $realestate->DPE = $request->input('DPE');
+            $realestate->id_g5e1D_typeOfRealEstate = $request->input('id_g5e1D_typeOfRealEstate');
+            $realestate->id_g5e1D_typeOfWaterEvacuation = $request->input('id_g5e1D_typeOfWaterEvacuation');
+            $realestate->id_g5e1D_typeOfContract = $request->input('id_g5e1D_typeOfContract');
+            $realestate->id_g5e1D_cities = $request->input('id_g5e1D_cities');
+            $realestate->id_g5e1D_status = $request->input('id_g5e1D_status');
+            $realestate->archived = false;
 
-                $realestate->save();
-                
-                 return response()->json(['realestate' => $realestate, 'message'=> 'le bien a été créé'], 201); 
-           } catch(\Exception $e) {
-                return response()->json(['message' => 'ça marche pas'], 404); 
-            }
+            $realestate->save();
+            
+            return response()->json(['API_response' => 'Création effectuée'], 201);
         }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Création impossible'], 409);
+        }
+    }
 
-  
+    public function update(Request $request, $id){
+
+        //validate incoming request 
+        $this->validate($request, [
+            'address' => 'required|string',
+            'price' => 'required',
+            'expenses' => 'required',
+            'description' => 'required|string',
+            'numberOfViews' => 'required',
+            'livingArea' => 'required',
+            'landArea' => 'required',
+            'roomNumber' => 'required',
+            'bedroomNumber' => 'required',
+            'bathroomNumber' => 'required',
+            'toiletNumber' => 'required',
+            'floorNumber' => 'required',
+            'GES' => 'required',
+            'DPE' => 'required',
+            'id_g5e1D_typeOfRealEstate' => 'required',
+            'id_g5e1D_typeOfWaterEvacuation' => 'required',
+            'id_g5e1D_typeOfContract' => 'required',
+            'id_g5e1D_cities' => 'required',
+            'id_g5e1D_status' => 'required',
+
+        ]);
+
+        try {
+            $realestate = RealEstate::findOrFail($id);
+
+            $realestate->address = $request->input('address');
+            $realestate->price = $request->input('price');
+            $realestate->expenses = $request->input('expenses');
+            $realestate->description = $request->input('description');
+            $realestate->numberOfViews = $request->input('numberOfViews');
+            $realestate->livingArea = $request->input('livingArea');
+            $realestate->landArea = $request->input('landArea');
+            $realestate->roomNumber = $request->input('roomNumber');
+            $realestate->bedroomNumber = $request->input('bedroomNumber');
+            $realestate->bathroomNumber = $request->input('bathroomNumber');
+            $realestate->toiletNumber = $request->input('toiletNumber');
+            $realestate->floorNumber = $request->input('floorNumber');
+            $realestate->constructionYear = $request->input('constructionYear');
+            $realestate->worksToBeDone = false;
+            $realestate->GES = $request->input('GES');
+            $realestate->DPE = $request->input('DPE');
+            $realestate->id_g5e1D_typeOfRealEstate = $request->input('id_g5e1D_typeOfRealEstate');
+            $realestate->id_g5e1D_typeOfWaterEvacuation = $request->input('id_g5e1D_typeOfWaterEvacuation');
+            $realestate->id_g5e1D_typeOfContract = $request->input('id_g5e1D_typeOfContract');
+            $realestate->id_g5e1D_cities = $request->input('id_g5e1D_cities');
+            $realestate->id_g5e1D_status = $request->input('id_g5e1D_status');
+            $realestate->archived = false;
+
+            $realestate->save();
+            
+            return response()->json(['API_response' => 'Modification effectuée', 'API_data' => $realestate], 200);
+        }
+        catch (\Exception $e){
+            return response()->json(['API_response' => 'Non trouvé'], 404);
+        }
+    }
 
     /**
      * Fonction deleterealestate
@@ -82,7 +146,7 @@ class realestateController extends Controller
     public function deleterealestate($id){
         try{
             $realestate = realestate::find($id);
-            $realestate->update(['archives'=> 1]);
+            $realestate->update(['archived'=> 1]);
             return response()->json('Le fichier a été archivé',200);
         }catch(\Exception $e){
             return response()->json('bien non trouvé',404);

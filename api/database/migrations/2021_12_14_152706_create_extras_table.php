@@ -13,7 +13,7 @@ class CreateExtrasTable extends Migration
      */
     public function up()
     {
-        Schema::create('extras', function (Blueprint $table) {
+        Schema::create('g5e1D_extras', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreateExtrasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extras');
+        Schema::dropIfExists('g5e1D_extras');
     }
 }
