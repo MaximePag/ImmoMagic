@@ -70,7 +70,7 @@ class AuthController extends Controller
         } catch (Exception $e) {
             //return error message
             return response()->json([
-                'entity' => 'users',
+                'entity' => 'user',
                 'action' => 'create',
                 'result' => 'failed'
             ], 409);
