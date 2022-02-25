@@ -41,7 +41,7 @@ $router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
 $router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
 
 /* $router->group(['prefix' => ''], function () use ($router) {
-    $router->post('createrealestate', 'realestateController@createrealestate');
+    $router->post('createRealEstate', 'RealEstateController@createRealEstate');
 }); */
 
 
@@ -66,11 +66,11 @@ $router->group(['prefix' => 'appointmentssubjects'], function () use ($router) {
     $router->delete('delete/{id}', 'appointmentssubjectsController@delete');
 });
 
-$router->group(['prefix' => 'typeofrealestates'], function () use ($router) {
-    $router->get('show/{id}', 'typeofrealestatesController@show');
-    $router->post('register', 'typeofrealestatesController@register');
-    $router->put('update/{id}', 'typeofrealestatesController@update');
-    $router->delete('delete/{id}', 'typeofrealestatesController@delete');
+$router->group(['prefix' => 'typeofRealEstates'], function () use ($router) {
+    $router->get('show/{id}', 'typeofRealEstatesController@show');
+    $router->post('register', 'typeofRealEstatesController@register');
+    $router->put('update/{id}', 'typeofRealEstatesController@update');
+    $router->delete('delete/{id}', 'typeofRealEstatesController@delete');
 });
 
 // Routes pour la table documents

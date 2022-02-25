@@ -136,14 +136,14 @@ class RealEstateController extends Controller
     }
 
     /**
-     * Fonction deleterealestate
-     * Mettre en archive le bien de la table realestate en fonction de l'id recherché, sinon renvoi un message d'erreur
+     * Fonction deleteRealEstate
+     * Mettre en archive le bien de la table RealEstate en fonction de l'id recherché, sinon renvoi un message d'erreur
      * @param Request $id du bien recherché
      * @param User TOKEN in header
      * @return json Retourne un message de confirmation ainsi que le code HTML 200 ou 404
      */
 
-    public function deleterealestate($id){
+    public function deleteRealEstate($id){
         try{
             $realestate = realestate::find($id);
             $realestate->update(['archived'=> 1]);
@@ -154,30 +154,30 @@ class RealEstateController extends Controller
     }
 
     /**
-     * fonction showrealestateDetail
+     * fonction showRealEstateDetail
      * Retrouve les informations d'un bien créées par l'utilisateur en fonction de l'id recherché et message d'erreur si l'id ne correspond pas à un bien de l'utilisateur
      * @param Request $id de la mise en gestion recherchée
      * @param User TOKEN in header
      * @return json Retourne un message de confirmation avec le code HTML 200 ou 404
      */
 
-    public function showrealestateDetail($id){
+    public function showRealEstateDetail($id){
         //try{
-            $realestate = realestate::find($id);
-            return response()->json($realestate);
+            $RealEstate = RealEstate::find($id);
+            return response()->json($RealEstate);
         /* }catch(\Exception $e){
             return response()->json('bien non trouvé',404);
         } */
     }
 
 // montre tous les biens
-    public function showAllrealestateDetail(){
-            $realestate = realestate::all();
-            return response()->json($realestate);
+    public function showAllRealEstateDetail(){
+            $RealEstate = RealEstate::all();
+            return response()->json($RealEstate);
     }
 
    /**
-     * fonction updaterealestate
+     * fonction updateRealEstate
      * Met à jour le bien en fonction des paramètres, et de l'id. Message d'erreur si l'id ne correspond pas à un bien créé par l'utilisateur
      * Récupère la liste des biens créé par le proprietaire du TOKEN et si l'id ne correspond pas à l'un de cela on affiche une erreur
      * @param Request referencePublishing, houseApartment, SaleOrRental, title, fullText, coverImage, address, zip, city, complement, price, area, numberOfPieces, digicode, furniture, balcony, elevator, garden, garage, parking, cellar
@@ -186,11 +186,11 @@ class RealEstateController extends Controller
      * @return json Retourne un message de confirmation ainsi que le code HTML 201 ou 409
      */
 
-    public function updaterealestate($id, Request $request){
+    public function updateRealEstate($id, Request $request){
         try{
-            $realestate = realestate::find($id);
-            $realestate->update($request->all());
-            return response()->json($realestate,200);
+            $RealEstate = RealEstate::find($id);
+            $RealEstate->update($request->all());
+            return response()->json($RealEstate,200);
         }catch(\Exception $e){
             return response()->json('bien non trouvé',404);
         }
