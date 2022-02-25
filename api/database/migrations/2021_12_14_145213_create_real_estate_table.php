@@ -13,28 +13,51 @@ class CreateRealEstateTable extends Migration
      */
     public function up()
     {
-        Schema::create('realEstate', function (Blueprint $table) {
+        Schema::create('g5e1D_realEstate', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('adress');
+            $table->string('address');
             $table->integer('price');
             $table->float('expenses');
             $table->string('description');
             $table->integer('numberOfViews');
             $table->integer('livingArea');
             $table->integer('landArea');
-            $table->integer('livingRoomArea');
             $table->integer('roomNumber');
             $table->integer('bedroomNumber');
             $table->integer('bathroomNumber');
             $table->integer('toiletNumber');
             $table->integer('floorNumber');
-            $table->boolean('garage');
-            $table->boolean('parking');
             $table->timestamp('constructionYear')->nullable();
             $table->boolean('worksToBeDone');
             $table->integer('GES');
             $table->integer('DPE');
-            $table->boolean('archives');
+            $table->boolean('archived');
+
+            $table->foreign('id_g5e1D_typeOfWaterEvacuation')
+                ->references('id')
+                ->on('g5e1D_typeOfWaterEvacuation')
+                ->onDelete('cascade');
+
+            $table->foreign('id_g5e1D_typeOfRealEstate')
+                ->references('id')
+                ->on('g5e1D_typeOfRealEstate')
+                ->onDelete('cascade');
+                
+            $table->foreign('id_g5e1D_typeOfContract')
+                ->references('id')
+                ->on('g5e1D_typeOfContract')
+                ->onDelete('cascade');
+
+            $table->foreign('id_g5e1D_cities')
+                ->references('id')
+                ->on('g5e1D_cities')
+                ->onDelete('cascade');
+
+            $table->foreign('id_g5e1D_status')
+                ->references('id')
+                ->on('g5e1D_status')
+                ->onDelete('cascade');
+                
             $table->timestamps();
         });
     }
@@ -46,6 +69,6 @@ class CreateRealEstateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('realEstate');
+        Schema::dropIfExists('g5e1D_realEstate');
     }
 }

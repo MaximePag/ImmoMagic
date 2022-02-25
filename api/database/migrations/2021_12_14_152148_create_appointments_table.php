@@ -13,11 +13,32 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('g5e1D_appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamp('dateHour');
             $table->string('notes');
             $table->boolean('archived');
+
+            $table->foreign('id_g5e1D_users')
+                ->references('id')
+                ->on('g5e1D_users')
+                ->onDelete('cascade');
+
+            $table->foreign('id_g5e1D_realEstate')
+                ->references('id')
+                ->on('g5e1D_realEstate')
+                ->onDelete('cascade');
+
+            $table->foreign('id_g5e1D_appointmentsSubjects')
+                ->references('id')
+                ->on('g5e1D_appointmentsSubjects')
+                ->onDelete('cascade');
+
+            $table->foreign('id_g5e1D_users_agentsCanHaveAppointments')
+                ->references('id')
+                ->on('g5e1D_users_agentsCanHaveAppointments')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -29,6 +50,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('g5e1D_appointments');
     }
 }

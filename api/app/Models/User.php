@@ -13,8 +13,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
     use Authenticatable, Authorizable;
-
-    protected $table = 'users';
+    
+    protected $table = 'g5e1D_users';
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +22,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'lastname', 'firstname', 'email', 'adress', 'additionnalAdress', 'zipCode', 'city', 'profesionnalNumber'
+        'lastname', 'firstname', 'mail', 'address', 'zipCode', 'city', 'id_g5e1D_roles'
     ];
 
     /**
@@ -34,6 +34,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 
+<<<<<<< HEAD
+=======
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -53,4 +55,5 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return [];
     }
+>>>>>>> bd23da65717680d2e9200a8c2c82c1ea27e38628
 }

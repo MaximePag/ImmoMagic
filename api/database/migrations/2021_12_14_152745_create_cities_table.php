@@ -13,7 +13,7 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('g5e1D_cities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('postalCode');
@@ -27,6 +27,6 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('g5e1D_cities');
     }
 }

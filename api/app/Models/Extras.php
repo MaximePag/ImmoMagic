@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class Extras extends Model
 {
-    protected $table = 'extras';
-
-    protected $fillable = ['name'];
+    protected $table = 'g5e1D_extras';
+    public $timestamps = false;
+    protected $fillable = [
+        'id','name'
+    ];
 }
