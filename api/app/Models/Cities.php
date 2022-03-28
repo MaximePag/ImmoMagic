@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cities extends Model
 {
-    protected $table = 'cities';
+    protected $table = 'g5e1D_cities';
     public $timestamps = false;
     protected $fillable = [
         'id', 'name', 'postalCode'

@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const RealEstate = () => {
     const [realEstateDatas, setRealEstate] = useState([]);
@@ -8,7 +9,7 @@ const RealEstate = () => {
 
     useEffect(() => {
         if (fetch){
-            axios.get('http://localhost:8000/RealEstate/').then((apiDatas) => {
+            axios.get('http://localhost:8005/RealEstate/').then((apiDatas) => {
                 setRealEstate(apiDatas.data)
                 setFetch(false)
             });
@@ -32,8 +33,16 @@ const RealEstate = () => {
                         <img src="./img/maison-2.jpg" className="card-img-top" alt="image maison"/>
                         <div className="card-body">
                             <h5 className="card-title">{realEstateDatas.description}</h5>
-                            <p className="card-text">{realEstateDatas.price} €</p>
                             <p className="card-text"><small className="text-muted">{realEstateDatas.landArea} m²</small></p>
+                        </div>
+                        <div className="card-footer text-end">
+                            <h5 className="card-text">{realEstateDatas.price} €</h5>
+                            <Link className="btn btn-magic"
+                                to={{
+                                    pathname: "/biens",
+                                    state: realEstateDatas.id
+                                }}>Voir les détails du bien
+                            </Link>
                         </div>
                     </div>
                 </div>

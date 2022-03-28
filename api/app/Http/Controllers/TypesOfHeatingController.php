@@ -1,21 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\TypesOfHeating;
+use App\Models\TypeOfHeating;
 use Illuminate\Http\Request;
 
-class TypesOfHeatingController extends Controller
+class TypeOfHeatingController extends Controller
 {
     public function index()
     {
-        $typesOfHeating = TypesOfHeating::all();
+        $typeOfHeating = TypeOfHeating::all();
 
-        return response()->json(['API_response' => 'OK', 'API_data' => $typesOfHeating], 200);
+        return response()->json(['API_response' => 'OK', 'API_data' => $typeOfHeating], 200);
     }
     public function show($id)
     {
         try{
-            $typeOfHeating = TypesOfHeating::findOrFail($id);
+            $typeOfHeating = TypeOfHeating::findOrFail($id);
 
             return response()->json(['API_response' => 'OK', 'API_data' => $typeOfHeating], 200);
         }
@@ -29,7 +29,7 @@ class TypesOfHeatingController extends Controller
             'name' => 'required|string'
         ]);
         try{
-            $typeOfHeating = new TypesOfHeating;
+            $typeOfHeating = new TypeOfHeating;
 
             $typeOfHeating->name = $request->name;
     
@@ -47,7 +47,7 @@ class TypesOfHeatingController extends Controller
             'name' => 'required|string'
         ]);
         try{
-            $typeOfHeating = TypesOfHeating::findOrFail($id);
+            $typeOfHeating = TypeOfHeating::findOrFail($id);
 
             $typeOfHeating->name = $request->name;
 
@@ -62,7 +62,7 @@ class TypesOfHeatingController extends Controller
     public function delete($id)
     {
         try{
-            $typeOfHeating = TypesOfHeating::findOrFail($id);
+            $typeOfHeating = TypeOfHeating::findOrFail($id);
 
             $typeOfHeating->delete();
 

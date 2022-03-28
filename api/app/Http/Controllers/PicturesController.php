@@ -25,13 +25,15 @@ class PicturesController extends Controller
     }
     public function create(Request $request)
     {
+        //validate incoming request 
         $this->validate($request, [
-            'path' => 'required|string'
+            'path' => 'required|string',
+            'id_g5e1D_realEstate' => 'required'
         ]);
         try{
             $picture = new Pictures;
 
-            $picture->path = $request->path;
+            $picture->path = $request->input('path');
     
             $picture->save();
 
@@ -44,12 +46,14 @@ class PicturesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'path' => 'required|string'
+            'path' => 'required|string',
+            'id_g5e1D_realEstate' => 'required'
         ]);
         try{
             $picture = Pictures::findOrFail($id);
 
-            $picture->path = $request->path;
+            $picture->path = $request->input('path');
+            $picture->id_g5e1D_realEstate = $request->input('id_g5e1D_realEstate');
 
             $picture->save();
 

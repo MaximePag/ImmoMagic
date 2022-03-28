@@ -1,6 +1,8 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+use Laravel\Lumen\Routing\Router;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,22 @@
 |
 */
 
+
+/** @var Router $router */
 $router->get('/', function () use ($router) {
-    $router->get('/', function () use ($router) {
-        return phpinfo();
-    });
+    return $router->app->version();
+});
+
+$router->group(['middleware' => 'auth','prefix' => 'api'], function ($router)
+{
+    $router->get('me', 'AuthController@me');
+});
+
+// API route group
+$router->group(['prefix' => 'api'], function () use ($router)
+{
+    $router->post('register', 'AuthController@register');
+    $router->post('login', 'AuthController@login');
 });
 
 // get('objet'), ('controller@methode');
@@ -26,29 +40,16 @@ $router->post('RealEstate', 'realestateController@createrealestate');
 $router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
 $router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
 
-// API route group
-$router->group(['prefix' => 'api'], function () use ($router) {
-    // Matches "/api/register
-   $router->post('register', 'AuthController@register');
-
-     // Matches "/api/login
-    $router->post('login', 'AuthController@login');
-});
-
-
 /* $router->group(['prefix' => ''], function () use ($router) {
-    $router->post('createrealestate', 'realestateController@createrealestate');
+    $router->post('createRealEstate', 'RealEstateController@createRealEstate');
 }); */
 
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** @var Router $router */
 
-
-$router->group(['prefix' => 'user'], function () use ($router) {
+$router->group(['middleware'=>'auth.jwt', 'prefix' => 'user'],  function () use ($router) {
     $router->get('index', 'AuthController@index');
     $router->get('show/{id}', 'AuthController@show');
-    $router->post('register', 'AuthController@register');
-    $router->post('login', 'AuthController@login');
     $router->patch('archive/{id}', 'AuthController@archive');
     $router->put('update/{id}', 'AuthController@update');
     $router->delete('delete/{id}', 'AuthController@delete');
@@ -57,6 +58,7 @@ $router->group(['prefix' => 'user'], function () use ($router) {
     $router->get('users', 'UserController@allUsers');
 });
 
+
 $router->group(['prefix' => 'appointmentssubjects'], function () use ($router) {
     $router->get('show/{id}', 'appointmentssubjectsController@show');
     $router->post('register', 'appointmentssubjectsController@register');
@@ -64,11 +66,11 @@ $router->group(['prefix' => 'appointmentssubjects'], function () use ($router) {
     $router->delete('delete/{id}', 'appointmentssubjectsController@delete');
 });
 
-$router->group(['prefix' => 'typeofrealestates'], function () use ($router) {
-    $router->get('show/{id}', 'typeofrealestatesController@show');
-    $router->post('register', 'typeofrealestatesController@register');
-    $router->put('update/{id}', 'typeofrealestatesController@update');
-    $router->delete('delete/{id}', 'typeofrealestatesController@delete');
+$router->group(['prefix' => 'typeofRealEstates'], function () use ($router) {
+    $router->get('show/{id}', 'typeofRealEstatesController@show');
+    $router->post('register', 'typeofRealEstatesController@register');
+    $router->put('update/{id}', 'typeofRealEstatesController@update');
+    $router->delete('delete/{id}', 'typeofRealEstatesController@delete');
 });
 
 // Routes pour la table documents
@@ -104,34 +106,34 @@ $router->post('Pictures', 'PicturesController@create');
 $router->put('Pictures/{id}', 'PicturesController@update');
 $router->delete('Pictures/{id}', 'PicturesController@delete');
 
-// Routes pour la table typesOfContract
+// Routes pour la table typeOfContract
 
-$router->get('TypesOfContract', 'TypesOfContractController@index' );
-$router->get('TypesOfContract/{id}', 'TypesOfContractController@show');
-$router->post('TypesOfContract', 'TypesOfContractController@create');
-$router->put('TypesOfContract/{id}', 'TypesOfContractController@update');
-$router->delete('TypesOfContract/{id}', 'TypesOfContractController@delete');
+$router->get('TypeOfContract', 'TypeOfContractController@index' );
+$router->get('TypeOfContract/{id}', 'TypeOfContractController@show');
+$router->post('TypeOfContract', 'TypeOfContractController@create');
+$router->put('TypeOfContract/{id}', 'TypeOfContractController@update');
+$router->delete('TypeOfContract/{id}', 'TypeOfContractController@delete');
 
-// Routes pour la table typesOfHeating
+// Routes pour la table typeOfHeating
 
-$router->get('TypesOfHeating', 'TypesOfHeatingController@index' );
-$router->get('TypesOfHeating/{id}', 'TypesOfHeatingController@show');
-$router->post('TypesOfHeating', 'TypesOfHeatingController@create');
-$router->put('TypesOfHeating/{id}', 'TypesOfHeatingController@update');
-$router->delete('TypesOfHeating/{id}', 'TypesOfHeatingController@delete');
+$router->get('TypeOfHeating', 'TypeOfHeatingController@index' );
+$router->get('TypeOfHeating/{id}', 'TypeOfHeatingController@show');
+$router->post('TypeOfHeating', 'TypeOfHeatingController@create');
+$router->put('TypeOfHeating/{id}', 'TypeOfHeatingController@update');
+$router->delete('TypeOfHeating/{id}', 'TypeOfHeatingController@delete');
 
 // Routes pour la table cities
 
 $router->get('Cities', 'Cities@index' );
 $router->get('Cities/{id}', 'Cities@show');
 
-// Routes pour la table typesOfWaterEvacuation
+// Routes pour la table typeOfWaterEvacuation
 
-$router->get('TypesOfWaterEvacuation', 'TypesOfWaterEvacuationController@index' );
-$router->get('TypesOfWaterEvacuation/{id}', 'TypesOfWaterEvacuationController@show');
-$router->post('TypesOfWaterEvacuation', 'TypesOfWaterEvacuationController@create');
-$router->put('TypesOfWaterEvacuation/{id}', 'TypesOfWaterEvacuationController@update');
-$router->delete('TypesOfWaterEvacuation/{id}', 'TypesOfWaterEvacuationController@delete');
+$router->get('TypeOfWaterEvacuation', 'TypeOfWaterEvacuationController@index' );
+$router->get('TypeOfWaterEvacuation/{id}', 'TypeOfWaterEvacuationController@show');
+$router->post('TypeOfWaterEvacuation', 'TypeOfWaterEvacuationController@create');
+$router->put('TypeOfWaterEvacuation/{id}', 'TypeOfWaterEvacuationController@update');
+$router->delete('TypeOfWaterEvacuation/{id}', 'TypeOfWaterEvacuationController@delete');
 
 /**
  * Routers for Extras
@@ -141,3 +143,13 @@ $router->get('/extras/{id}', 'ExtrasController@show');
 $router->post('/extras', 'ExtrasController@create');
 $router->put('/extras/{id}', 'ExtrasController@update');
 $router->delete('/extras/{id}', 'ExtrasController@delete');
+
+// Routes pour la table RealEstate
+
+// $router->group(['middleware' => 'auth', 'prefix' => ''], function () use ($router) {
+    $router->get('RealEstate', 'realestateController@showAllrealestateDetail');
+    $router->get('/RealEstate/{id}', 'realestateController@showrealestateDetail');
+    $router->post('RealEstate', 'realestateController@createrealestate');
+    $router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
+    $router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
+// });

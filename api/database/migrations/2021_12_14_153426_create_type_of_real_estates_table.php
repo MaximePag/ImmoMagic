@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatetypeofrealestatesTable extends Migration
+class CreatetypeofRealEstatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatetypeofrealestatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('typeofrealestates', function (Blueprint $table) {
+        Schema::create('g5e1D_typeOfRealEstates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreatetypeofrealestatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typeofrealestates');
+        Schema::dropIfExists('g5e1D_typeOfRealEstates');
     }
 }

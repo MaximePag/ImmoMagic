@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use http\Client\Response;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use  App\Models\User;
 
@@ -12,9 +14,57 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    //public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        return response()->json($user);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $user->lastname = $request->input('lastname');
+        $user->firstname = $request->input('firstname');
+        $user->phoneNumber = $request->input('phoneNumber');
+        $user->email = $request->input('email');
+        $plainPassword = $request->input('password');
+        $user->password = app('hash')->make($plainPassword);
+        $user->adress = $request->input('adress');
+        $user->additionnalAdress = $request->input('additionnalAdress');
+        $user->zipCode = $request->input('zipCode');
+        $user->city = $request->input('city');
+        $user->profesionnalNumber = $request->input('profesionnalNumber');
+
+
+        $user->save();
+
+        return response()->json($user);
+
+    }
+
+    public function archive($id)
+    {
+        $user = User::find($id);
+
+        $user->archive = true;
+
+        $user->save();
+
+        return response()->json('La fiche client a bien été archivée.');
+    }
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        return response()->json('Fiche client bien supprimée');
     }
 
     /**
