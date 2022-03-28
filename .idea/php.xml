@@ -113,16 +113,7 @@
       <path value="$PROJECT_DIR$/api/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/api/vendor/psr/container" />
       <path value="$PROJECT_DIR$/api/vendor/composer" />
-      <path value="$PROJECT_DIR$/api/vendor/league/flysystem" />
-      <path value="$PROJECT_DIR$/api/vendor/league/mime-type-detection" />
-      <path value="$PROJECT_DIR$/api/vendor/laravelista/lumen-vendor-publish" />
       <path value="$PROJECT_DIR$/api/vendor/chuckrincon/lumen-config-discover" />
     </include_path>
-  </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
-  <component name="PhpUnit">
-    <phpunit_settings>
-      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/api/vendor/autoload.php" />
-    </phpunit_settings>
   </component>
 </project>

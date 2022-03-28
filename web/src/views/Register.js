@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import FormValidator from './FormValidator';
 import axios from 'axios';
 class Register extends React.Component{
-constructor(){
-super();
+    constructor(props){
+super(props);
 this.validator = new FormValidator([{
 field: 'full_name',
 method: 'isEmpty',

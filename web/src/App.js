@@ -10,15 +10,12 @@ import Register from "./views/Register";
 import Http404 from "./views/Http404";
 import Search from './views/Search';
 import UserProfile from './views/UserProfile';
-<<<<<<< HEAD
 import RealEstateDetail from "./views/RealEstateDetail";
-=======
+
 import Login from './views/Login';
 import PrivateRoute from './Utils/PrivateRoute';
 import PublicRoute from './Utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
-
->>>>>>> bd23da65717680d2e9200a8c2c82c1ea27e38628
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -51,11 +48,11 @@ function App() {
         <Route path="/contact" exact component={Contact} />
         <Route path="/rechercher" exact component={Search} />
         <Route path="/inscription" exact component={Register} />
-<<<<<<< HEAD
+
         <Route path="/biens" exact component={RealEstateDetail} />
-=======
+
         <PublicRoute path="/login" exact component={Login} />
->>>>>>> bd23da65717680d2e9200a8c2c82c1ea27e38628
+
         <Route component={Http404} />
         <PrivateRoute path="/userProfile" exact component={UserProfile} />
       </Switch>
