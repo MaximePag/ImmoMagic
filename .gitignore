@@ -1,3 +1,5 @@
 /api/.env
 /api/composer.lock
 /api/composer.json
+.idea
+/node_modules
