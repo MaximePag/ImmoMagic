@@ -166,6 +166,7 @@ CREATE TABLE g5e1D_realEstate(
         DPE                            Int NOT NULL ,
         archived                       Bool NOT NULL ,
         id_g5e1D_typeOfRealEstate      Int NOT NULL ,
+        id_g5e1D_typeOfHeating         Int NOT NULL ,
         id_g5e1D_typeOfWaterEvacuation Int NOT NULL ,
         id_g5e1D_typesOfContract       Int NOT NULL ,
         id_g5e1D_cities                Int NOT NULL ,
@@ -173,10 +174,11 @@ CREATE TABLE g5e1D_realEstate(
 	,CONSTRAINT g5e1D_realEstate_PK PRIMARY KEY (id)
 
 	,CONSTRAINT g5e1D_realEstate_g5e1D_typeOfRealEstate_FK FOREIGN KEY (id_g5e1D_typeOfRealEstate) REFERENCES g5e1D_typeOfRealEstate(id)
-	,CONSTRAINT g5e1D_realEstate_g5e1D_typeOfWaterEvacuation0_FK FOREIGN KEY (id_g5e1D_typeOfWaterEvacuation) REFERENCES g5e1D_typeOfWaterEvacuation(id)
-	,CONSTRAINT g5e1D_realEstate_g5e1D_typesOfContract1_FK FOREIGN KEY (id_g5e1D_typesOfContract) REFERENCES g5e1D_typesOfContract(id)
-	,CONSTRAINT g5e1D_realEstate_g5e1D_cities2_FK FOREIGN KEY (id_g5e1D_cities) REFERENCES g5e1D_cities(id)
-	,CONSTRAINT g5e1D_realEstate_g5e1D_status3_FK FOREIGN KEY (id_g5e1D_status) REFERENCES g5e1D_status(id)
+	,CONSTRAINT g5e1D_realEstate_g5e1D_typeOfHeating0_FK FOREIGN KEY (id_g5e1D_typeOfHeating) REFERENCES g5e1D_typeOfHeating(id)
+	,CONSTRAINT g5e1D_realEstate_g5e1D_typeOfWaterEvacuation1_FK FOREIGN KEY (id_g5e1D_typeOfWaterEvacuation) REFERENCES g5e1D_typeOfWaterEvacuation(id)
+	,CONSTRAINT g5e1D_realEstate_g5e1D_typesOfContract2_FK FOREIGN KEY (id_g5e1D_typesOfContract) REFERENCES g5e1D_typesOfContract(id)
+	,CONSTRAINT g5e1D_realEstate_g5e1D_cities3_FK FOREIGN KEY (id_g5e1D_cities) REFERENCES g5e1D_cities(id)
+	,CONSTRAINT g5e1D_realEstate_g5e1D_status4_FK FOREIGN KEY (id_g5e1D_status) REFERENCES g5e1D_status(id)
 )ENGINE=InnoDB;
 
 
@@ -242,19 +244,5 @@ CREATE TABLE g5e1D_realEstateCanHaveExtras(
 
 	,CONSTRAINT g5e1D_realEstateCanHaveExtras_g5e1D_extras_FK FOREIGN KEY (id) REFERENCES g5e1D_extras(id)
 	,CONSTRAINT g5e1D_realEstateCanHaveExtras_g5e1D_realEstate0_FK FOREIGN KEY (id_g5e1D_realEstate) REFERENCES g5e1D_realEstate(id)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: g5e1D_realEstateCanHaveHeatType
-#------------------------------------------------------------
-
-CREATE TABLE g5e1D_realEstateCanHaveHeatType(
-        id                     Int NOT NULL ,
-        id_g5e1D_typeOfHeating Int NOT NULL
-	,CONSTRAINT g5e1D_realEstateCanHaveHeatType_PK PRIMARY KEY (id,id_g5e1D_typeOfHeating)
-
-	,CONSTRAINT g5e1D_realEstateCanHaveHeatType_g5e1D_realEstate_FK FOREIGN KEY (id) REFERENCES g5e1D_realEstate(id)
-	,CONSTRAINT g5e1D_realEstateCanHaveHeatType_g5e1D_typeOfHeating0_FK FOREIGN KEY (id_g5e1D_typeOfHeating) REFERENCES g5e1D_typeOfHeating(id)
 )ENGINE=InnoDB;
 

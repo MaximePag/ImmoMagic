@@ -57,7 +57,7 @@ const RealEstateDetail = (props) => {
               </div>
             </div>
             <div className="col-lg-7">
-              <h1>Ceci est un placeholder pour le titre du bien</h1>
+              <h1>{realEstateDatas.id_g5e1D_typesOfContract === 1 ? 'À Louer' : 'À Vendre'}</h1>
               <div className="col mt-2">
                     <div className="realEstate card mx-3">
                       <div className="card-header">
@@ -86,8 +86,11 @@ const RealEstateDetail = (props) => {
                         <p className="card-text"><i className="fas fa-plus"></i> Les plus : Piscine, Garage</p>
                       </div>
                       <div className="card-footer">
-                          <h2 className="card-text"><i className="fas fa-coins"></i> Loyer : {realEstateDatas.price} €</h2>
-                            <p className="card-text text-muted">{realEstateDatas.price} € de loyer dont {realEstateDatas.expenses} € de charges locatives</p>
+                          <h2 className="card-text"><i className="fas fa-coins"></i> {realEstateDatas.id_g5e1D_typesOfContract === 1 ? 'Loyer' : 'Prix'} : {realEstateDatas.price} €</h2>
+                          {realEstateDatas.id_g5e1D_typesOfContract === 1 
+                          ? <p className="card-text text-muted">{realEstateDatas.price} € de loyer dont {realEstateDatas.expenses} € de charges locatives</p>
+                          : ''
+                          }
                       </div>
                     </div>
                 </div>

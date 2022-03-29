@@ -32,11 +32,13 @@ const RealEstate = () => {
                     <div className="realEstate card mx-3">
                         <img src="./img/maison-2.jpg" className="card-img-top" alt="image maison"/>
                         <div className="card-body">
+                            <h3>{realEstateDatas.id_g5e1D_typesOfContract === 1 ? 'À Louer' : 'À Vendre'}</h3>
                             <h5 className="card-title">{realEstateDatas.description}</h5>
-                            <p className="card-text"><small className="text-muted">{realEstateDatas.landArea} m²</small></p>
+                            <p className="card-text">{realEstateDatas.landArea} m²</p>
                         </div>
                         <div className="card-footer text-end">
                             <h5 className="card-text">{realEstateDatas.price} €</h5>
+                            <p className="card-text"><small className="text-muted"><i className="fas fa-eye"></i> Vu {realEstateDatas.numberOfViews} fois</small></p>
                             <Link className="btn btn-magic"
                                 to={{
                                     pathname: "/biens",
