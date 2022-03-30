@@ -32,14 +32,12 @@ class UserController extends Controller
         $user->lastname = $request->input('lastname');
         $user->firstname = $request->input('firstname');
         $user->phoneNumber = $request->input('phoneNumber');
-        $user->email = $request->input('email');
+        $user->mail = $request->input('mail');
         $plainPassword = $request->input('password');
         $user->password = app('hash')->make($plainPassword);
-        $user->adress = $request->input('adress');
-        $user->additionnalAdress = $request->input('additionnalAdress');
+        $user->address = $request->input('address');
         $user->zipCode = $request->input('zipCode');
         $user->city = $request->input('city');
-        $user->profesionnalNumber = $request->input('profesionnalNumber');
 
 
         $user->save();

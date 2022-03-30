@@ -12,7 +12,6 @@ class CreateUsersTable extends Migration {
      */
     public function up()
     {
-        Schema::defaultStringLength(191);
         Schema::create('g5e1D_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('lastname');
@@ -25,12 +24,15 @@ class CreateUsersTable extends Migration {
             $table->string('zipCode');
             $table->string('city');
             $table->boolean('archive');
+            $table->bigInteger('id_g5e1D_roles')->unsigned();    
+            $table->timestamps();
+        });
+
+        Schema::table('g5e1D_users', function($table) {
             $table->foreign('id_g5e1D_roles')
                 ->references('id')
                 ->on('g5e1D_roles')
                 ->onDelete('cascade');
-            $table->timestamps();
-
         });
     }
 

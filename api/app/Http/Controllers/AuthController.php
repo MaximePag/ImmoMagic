@@ -34,13 +34,11 @@ class AuthController extends Controller
             'lastname' => 'required|string',
             'firstname' => 'required|string',
             'phoneNumber' => 'required|string',
-            'email' => 'required|email|unique:users',
+            'mail' => 'required|email|unique:g5e1D_users',
             'password' => 'required|string',
-            'adress' => 'required|string',
-            'additionnalAdress' => 'required|string',
+            'address' => 'required|string',
             'zipCode' => 'required|string',
-            'city' => 'required|string',
-            'profesionnalNumber' => 'required|string'
+            'city' => 'required|string'
         ]);
 
         try {
@@ -49,13 +47,11 @@ class AuthController extends Controller
             $user->lastname = $request->input('lastname');
             $user->firstname = $request->input('firstname');
             $user->phoneNumber = $request->input('phoneNumber');
-            $user->email = $request->input('email');
+            $user->mail = $request->input('mail');
             $user->password = app('hash')->make($request->input('password'));
-            $user->adress = $request->input('adress');
-            $user->additionnalAdress = $request->input('additionnalAdress');
+            $user->address = $request->input('address');
             $user->zipCode = $request->input('zipCode');
             $user->city = $request->input('city');
-            $user->profesionnalNumber = $request->input('profesionnalNumber');
             $user->archive = false;
 
             $user->save();
@@ -89,11 +85,11 @@ class AuthController extends Controller
     {
           //validate incoming request
         $this->validate($request, [
-            'email' => 'required|string',
+            'mail' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $credentials = $request->only(['email', 'password']);
+        $credentials = $request->only(['mail', 'password']);
 
         if (! $token = Auth::attempt($credentials)) {
             return response()->json(['message' => 'Unauthorized'], 401);

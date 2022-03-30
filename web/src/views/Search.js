@@ -12,11 +12,11 @@ const Search = () => {
     const onSubmit = (data) => {
         const params = new URLSearchParams()
         params.append('price', data.price)
-        axios.get('http://localhost:8005/RealEstate/' + data.price).then((apiDatas) => setRealEstate(apiDatas.data));;
+        axios.get('http://localhost:8000/RealEstate/' + data.price).then((apiDatas) => setRealEstate(apiDatas.data));;
     }
 
     useEffect(() => {
-        axios.get('http://localhost:8005/RealEstate/').then((apiDatas) => setRealEstate(apiDatas.data));;
+        axios.get('http://localhost:8000/RealEstate/').then((apiDatas) => setRealEstate(apiDatas.data));;
     }, []);
 
     return (

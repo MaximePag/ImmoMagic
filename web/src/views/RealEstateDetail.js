@@ -9,7 +9,7 @@ const RealEstateDetail = (props) => {
 
   useEffect(() => {
       if (fetch){
-          axios.get('http://localhost:8005/RealEstate/' + realEstateId).then((apiDatas) => {
+          axios.get('http://localhost:8000/RealEstate/' + realEstateId).then((apiDatas) => {
               setRealEstate(apiDatas.data)
               setFetch(false)
           });
@@ -62,6 +62,7 @@ const RealEstateDetail = (props) => {
                     <div className="realEstate card mx-3">
                       <div className="card-header">
                         <p>{realEstateDatas.description}</p>
+                        <p className="card-text text-end"><small className="text-muted"><i className="fas fa-eye"></i> Vu {realEstateDatas.numberOfViews} fois</small></p>
                       </div>
                       <div className="card-body row">
                         <div className="col-lg-6">
@@ -104,7 +105,7 @@ export default RealEstateDetail;
 
 //   useEffect(() => {
 //     axios
-//       .get("http://localhost:8005/RealEstate/")
+//       .get("http://localhost:8000/RealEstate/")
 //       .then((apiDatas) => setRealEstate(apiDatas.data));
 //   }, []);
 

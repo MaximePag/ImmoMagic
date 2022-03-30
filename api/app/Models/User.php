@@ -34,8 +34,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 
-<<<<<<< HEAD
-=======
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -55,5 +53,4 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return [];
     }
->>>>>>> bd23da65717680d2e9200a8c2c82c1ea27e38628
 }

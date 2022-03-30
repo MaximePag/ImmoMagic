@@ -32,10 +32,24 @@ class CreateRealEstateTable extends Migration
             $table->integer('GES');
             $table->integer('DPE');
             $table->boolean('archived');
+            $table->bigInteger('id_g5e1D_typeOfWaterEvacuation')->unsigned();
+            $table->bigInteger('id_g5e1D_typeOfHeating')->unsigned();  
+            $table->bigInteger('id_g5e1D_typeOfRealEstate')->unsigned();   
+            $table->bigInteger('id_g5e1D_typeOfContract')->unsigned();   
+            $table->bigInteger('id_g5e1D_cities')->unsigned();
+            $table->bigInteger('id_g5e1D_status')->unsigned();
+            $table->timestamps();
+        });
 
+        Schema::table('g5e1D_realEstate', function($table) {
             $table->foreign('id_g5e1D_typeOfWaterEvacuation')
                 ->references('id')
                 ->on('g5e1D_typeOfWaterEvacuation')
+                ->onDelete('cascade');
+
+            $table->foreign('id_g5e1D_typeOfHeating')
+                ->references('id')
+                ->on('g5e1D_typeOfHeating')
                 ->onDelete('cascade');
 
             $table->foreign('id_g5e1D_typeOfRealEstate')
@@ -57,8 +71,6 @@ class CreateRealEstateTable extends Migration
                 ->references('id')
                 ->on('g5e1D_status')
                 ->onDelete('cascade');
-                
-            $table->timestamps();
         });
     }
 

@@ -9,7 +9,7 @@ const RealEstate = () => {
 
     useEffect(() => {
         if (fetch){
-            axios.get('http://localhost:8005/RealEstate/').then((apiDatas) => {
+            axios.get('http://localhost:8000/RealEstate/').then((apiDatas) => {
                 setRealEstate(apiDatas.data)
                 setFetch(false)
             });
@@ -38,7 +38,7 @@ const RealEstate = () => {
                         </div>
                         <div className="card-footer text-end">
                             <h5 className="card-text">{realEstateDatas.price} €</h5>
-                            <p className="card-text"><small className="text-muted"><i className="fas fa-eye"></i> Vu {realEstateDatas.numberOfViews} fois</small></p>
+                            <p className="card-text text-end"><small className="text-muted"><i className="fas fa-eye"></i> Vu {realEstateDatas.numberOfViews} fois</small></p>
                             <Link className="btn btn-magic"
                                 to={{
                                     pathname: "/biens",
