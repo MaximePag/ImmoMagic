@@ -1,5 +1,9 @@
 /api/.env
 /api/composer.lock
 /api/composer.json
+/web/package.json
+/web/package.lock.json
+package.json
+package.lock.json
 .idea
 /node_modules
