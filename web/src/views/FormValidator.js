@@ -1,4 +1,4 @@
-import validator from 'validator';
+/**import validator from 'validator';
 class FormValidator {
     constructor(validations) {
         this.validations = validations;
@@ -34,4 +34,4 @@ class FormValidator {
         };
     }
 }
-export default FormValidator;
+export default FormValidator;*/
