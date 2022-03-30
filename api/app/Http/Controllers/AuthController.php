@@ -52,6 +52,7 @@ class AuthController extends Controller
             $user->address = $request->input('address');
             $user->zipCode = $request->input('zipCode');
             $user->city = $request->input('city');
+            $user->id_g5e1D_roles = 1;
             $user->archive = false;
 
             $user->save();

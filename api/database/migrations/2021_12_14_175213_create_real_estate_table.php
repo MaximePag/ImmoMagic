@@ -27,7 +27,7 @@ class CreateRealEstateTable extends Migration
             $table->integer('bathroomNumber');
             $table->integer('toiletNumber');
             $table->integer('floorNumber');
-            $table->timestamp('constructionYear')->nullable();
+            $table->string('constructionYear')->nullable();
             $table->boolean('worksToBeDone');
             $table->integer('GES');
             $table->integer('DPE');

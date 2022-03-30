@@ -18,8 +18,20 @@ class CreateAppointmentsTable extends Migration
             $table->timestamp('dateHour');
             $table->string('notes');
             $table->boolean('archived');
+            $table->bigInteger('id_g5e1D_users_customer')->unsigned();
+            $table->bigInteger('id_g5e1D_users_agent')->unsigned();
+            $table->bigInteger('id_g5e1D_realEstate')->unsigned();
+            $table->bigInteger('id_g5e1D_appointmentsSubjects')->unsigned();
+            $table->timestamps();
+        });
 
-            $table->foreign('id_g5e1D_users')
+        Schema::table('g5e1D_appointments', function($table) {
+            $table->foreign('id_g5e1D_users_customer')
+                ->references('id')
+                ->on('g5e1D_users')
+                ->onDelete('cascade');
+
+            $table->foreign('id_g5e1D_users_agent')
                 ->references('id')
                 ->on('g5e1D_users')
                 ->onDelete('cascade');
@@ -33,13 +45,6 @@ class CreateAppointmentsTable extends Migration
                 ->references('id')
                 ->on('g5e1D_appointmentsSubjects')
                 ->onDelete('cascade');
-
-            $table->foreign('id_g5e1D_users_agentsCanHaveAppointments')
-                ->references('id')
-                ->on('g5e1D_users_agentsCanHaveAppointments')
-                ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 

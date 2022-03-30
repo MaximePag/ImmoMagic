@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration {
             $table->string('phoneNumber');
             $table->string('mail')->unique()->notNullable();
             $table->string('password');
-            $table->string('passwordToken');
             $table->string('address');
             $table->string('zipCode');
             $table->string('city');

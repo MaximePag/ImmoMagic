@@ -14,8 +14,13 @@ class CreateFavoritesTable extends Migration
     public function up()
     {
         Schema::create('g5e1D_favorites', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->bigInteger('id_g5e1D_users')->unsigned();
+            $table->bigInteger('id_g5e1D_realEstate')->unsigned();
+            $table->timestamps();
+        });
 
+        Schema::table('g5e1D_favorites', function($table) {
             $table->foreign('id_g5e1D_users')
                 ->references('id')
                 ->on('g5e1D_users')
@@ -25,8 +30,6 @@ class CreateFavoritesTable extends Migration
                 ->references('id')
                 ->on('g5e1D_realEstate')
                 ->onDelete('cascade');
-                
-            $table->timestamps();
         });
     }
 

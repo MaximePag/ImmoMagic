@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePicturesTable extends Migration
+class CreateStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,9 @@ class CreatePicturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('g5e1D_pictures', function (Blueprint $table) {
+        Schema::create('g5e1D_status', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('path');
-
-            $table->foreign('id_g5e1D_realEstate')
-                ->references('id')
-                ->on('g5e1D_realEstate')
-                ->onDelete('cascade');
-
-            $table->timestamps();
+            $table->string('name');
         });
     }
 
@@ -33,6 +26,6 @@ class CreatePicturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('g5e1D_pictures');
+        Schema::dropIfExists('g5e1D_status');
     }
 }

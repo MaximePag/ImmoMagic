@@ -13,7 +13,7 @@ class CreatetypeofRealEstatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('g5e1D_typeOfRealEstates', function (Blueprint $table) {
+        Schema::create('g5e1D_typeOfRealEstate', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
         });
@@ -26,6 +26,6 @@ class CreatetypeofRealEstatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('g5e1D_typeOfRealEstates');
+        Schema::dropIfExists('g5e1D_typeOfRealEstate');
     }
 }

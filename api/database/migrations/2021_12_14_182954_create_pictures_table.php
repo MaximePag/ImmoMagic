@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDocumentsTable extends Migration
+class CreatePicturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,17 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('g5e1D_documents', function (Blueprint $table) {
+        Schema::create('g5e1D_pictures', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
             $table->string('path');
-            $table->boolean('archived');
-            $table->bigInteger('id_g5e1D_users')->unsigned();
+            $table->bigInteger('id_g5e1D_realEstate')->unsigned();
             $table->timestamps();
         });
 
-        Schema::table('g5e1D_documents', function($table) {
-            $table->foreign('id_g5e1D_users')
+        Schema::table('g5e1D_pictures', function($table) {
+            $table->foreign('id_g5e1D_realEstate')
                 ->references('id')
-                ->on('g5e1D_users')
+                ->on('g5e1D_realEstate')
                 ->onDelete('cascade');
         });
     }
@@ -37,6 +35,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('g5e1D_documents');
+        Schema::dropIfExists('g5e1D_pictures');
     }
 }
