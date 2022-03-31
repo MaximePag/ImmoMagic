@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use http\Client\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use  App\Models\User;
@@ -14,7 +15,7 @@ class UserController extends Controller
      *
      * @return void
      */
-    //public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -78,10 +79,10 @@ class UserController extends Controller
     /**
      * Get all User.
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function allUsers()
-    {
+    public function allUsers(): JsonResponse
+{
          return response()->json(['users' =>  User::all()], 200);
     }
 

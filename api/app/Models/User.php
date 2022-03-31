@@ -10,10 +10,22 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
+/**
+ * @property array|mixed|string $lastname
+ * @property array|mixed|string $firstname
+ * @property array|mixed|string $phoneNumber
+ * @property array|mixed|string $mail
+ * @property mixed $password
+ * @property array|mixed|string $address
+ * @property array|mixed|string $zipCode
+ * @property array|mixed|string $city
+ * @property int|mixed $id_g5e1D_roles
+ * @property false|mixed $archive
+ */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
     use Authenticatable, Authorizable;
-    
+
     protected $table = 'g5e1D_users';
 
     /**
@@ -22,7 +34,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'lastname', 'firstname', 'mail', 'address', 'zipCode', 'city', 'id_g5e1D_roles'
+        'lastname', 'firstname', 'phoneNumber', 'mail', 'address', 'zipCode', 'city', 'id_g5e1D_roles'
     ];
 
     /**
@@ -53,4 +65,5 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return [];
     }
+
 }

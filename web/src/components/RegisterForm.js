@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from "react-router-dom";
+import axios from 'axios';
 import Navbar from "../components/Navbar";
 
 
@@ -18,15 +18,10 @@ export default function Form() {
     // States for checking the errors
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
+    const [fetch, setFetch] = useState(true);
+    const [sortData, setSortData] = useState([]);
+    const [UserDatas, setUser] = useState([]);
 
-    /**useEffect(() => {
-        if (fetch) {
-            axios.post('http://localhost:8000/Register/').then((apiDatas) => {
-                setUser(apiDatas.data)
-                setFetch(false)
-            });
-        };
-    }, [UserDatas, fetch]);*/
 
     // Handling the firstname change
     const handleFirstname = (e) => {
@@ -77,8 +72,10 @@ export default function Form() {
 
     // Handling the form submission
     const handleSubmit = (e) => {
-        e.preventDefault();
-        if (firstname === '' || lastname === '' || mail === '' || phoneNumber === '' || password === '' || address === '' || zipCode === '' || city === '' ) {
+        e.preventDefault()
+        const data = new FormData(e);
+       console.log(data);
+        if (firstname === '' || lastname === '' || mail === '' || phoneNumber === '' || password === '' || address === '' || zipCode === '' || city === '') {
             setError(true);
         } else {
             setSubmitted(true);
@@ -87,7 +84,7 @@ export default function Form() {
     };
 
     // Showing success message
-    const successMessage = () => {
+     const successMessage = () => {
         return (
             <div
                 className="success"
@@ -99,69 +96,64 @@ export default function Form() {
         );
     };
 
-    // Showing error message if error is true
     const errorMessage = () => {
-        return (
-            <div
-                className="error"
-                style={{
-                    display: error ? '' : 'none',
-                }}>
+            return (
+            <div className="error" style={{display: error ? '' : 'none'}}>
                 <h1>Merci de remplir tous les champs</h1>
             </div>
-        );
-    };
+            );
+            };
+            return (
+            <div className="form">
+                <div>
+                    <h1>Inscription</h1>
+                </div>
 
-    return (
-        <div className="form">
-            <div>
-                <h1>Inscription</h1>
+                {/* Calling to the methods */}
+                <div className="messages">
+                    {errorMessage()}
+                    {successMessage()}
+                </div>
+
+                <form onSubmit={handleSubmit}>
+                    {/* Labels and inputs for form data */}
+                    <label className="label">Prénom :</label>
+                    <input onChange={handleFirstname} className="input"
+                           value={firstname} type="text"/>
+
+                    <label className="label">Nom de famille :</label>
+                    <input onChange={handleLastname} className="input"
+                           value={lastname} type="text"/>
+
+                    <label className="label">Adresse :</label>
+                    <input onChange={handleAddress} className="input"
+                           value={address} type="text"/>
+
+                    <label className="label">Code postal :</label>
+                    <input onChange={handleZipCode} className="input"
+                           value={zipCode} type="text"/>
+
+                    <label className="label">Ville :</label>
+                    <input onChange={handleCity} className="input"
+                           value={city} type="text"/>
+
+                    <label className="label">Numéro de téléphone :</label>
+                    <input onChange={handlePhoneNumber} className="input"
+                           value={phoneNumber} type="text"/>
+
+                    <label className="label">Adresse mail :</label>
+                    <input onChange={handleMail} className="input"
+                           value={mail} type="email"/>
+
+                    <label className="label">Password</label>
+                    <input onChange={handlePassword} className="input"
+                           value={password} type="password"/>
+
+                    <button  className="btn" type="submit">
+                        Submit
+                    </button>
+                </form>
             </div>
+            )
+        };
 
-            {/* Calling to the methods */}
-            <div className="messages">
-                {errorMessage()}
-                {successMessage()}
-            </div>
-
-            <form>
-                {/* Labels and inputs for form data */}
-                <label className="label">Prénom :</label>
-                <input onChange={handleFirstname} className="input"
-                       value={firstname} type="text" />
-
-                <label className="label">Nom de famille :</label>
-                <input onChange={handleLastname} className="input"
-                       value={lastname} type="text" />
-
-                <label className="label">Adresse :</label>
-                <input onChange={handleAddress} className="input"
-                       value={address} type="text" />
-
-                <label className="label">Code postal :</label>
-                <input onChange={handleZipCode} className="input"
-                       value={zipCode} type="text" />
-
-                <label className="label">Ville :</label>
-                <input onChange={handleCity} className="input"
-                       value={city} type="text" />
-
-                <label className="label">Numéro de téléphone :</label>
-                <input onChange={handlePhoneNumber} className="input"
-                       value={phoneNumber} type="text" />
-
-                <label className="label">Adresse mail :</label>
-                <input onChange={handleMail} className="input"
-                       value={mail} type="email" />
-
-                <label className="label">Password</label>
-                <input onChange={handlePassword} className="input"
-                       value={password} type="password" />
-
-                <button onClick={handleSubmit} className="btn" type="submit">
-                    Submit
-                </button>
-            </form>
-        </div>
-    );
-}

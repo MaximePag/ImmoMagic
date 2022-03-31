@@ -1,39 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {Link} from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Form from "../components/RegisterForm";
 
-class Register extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            firstname: '',
-            lastname: '',
-            address: '',
-            zipCode: '',
-             city: '',
-            phoneNumber: '',
-            mail: '',
-            password: '',
-            object: '',
-            query: ''
-        }
-        useEffect(() => {
-            if (onsubmit()) {
-                axios.post('http://localhost:8000/api/Register/').then((apiDatas) => {
-                    setUser(apiDatas.data)
-                    setFetch(false)
-                });
-            };
-        }, [UserDatas, fetch]);
-    }
-
-    render() {
-
-/*class Register extends React.Component {
-    render() {*/
-
+function Register () {
+    //const User = props.location.state
+        /*console.log(UsersDatas);*/
         return (
             <div className={Register}>
                 <Navbar/>
@@ -44,11 +16,11 @@ class Register extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>)
-    }
-}
+            </div>
+        );
+};
 
-export default Form;
+export default Register;
 
 
 
