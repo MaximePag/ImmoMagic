@@ -34,11 +34,11 @@ $router->group(['prefix' => 'api'], function () use ($router)
 });
 
 // get('objet'), ('controller@methode');
-$router->get('RealEstate', 'realestateController@showAllrealestateDetail' );
-$router->get('/RealEstate/{id}', 'realestateController@showrealestateDetail');
-$router->post('RealEstate', 'realestateController@createrealestate');
-$router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
-$router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
+// $router->get('RealEstate', 'realestateController@showAllrealestateDetail' );
+// $router->get('/RealEstate/{id}', 'realestateController@showrealestateDetail');
+// $router->post('RealEstate', 'realestateController@createrealestate');
+// $router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
+// $router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
 
 /* $router->group(['prefix' => ''], function () use ($router) {
     $router->post('createRealEstate', 'RealEstateController@createRealEstate');
@@ -47,7 +47,7 @@ $router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
 
 /** @var Router $router */
 
-$router->group(['middleware'=>'auth.jwt', 'prefix' => 'user'],  function () use ($router) {
+$router->group(['middleware'=>'auth', 'prefix' => 'user'],  function () use ($router) {
     $router->get('index', 'AuthController@index');
     $router->get('show/{id}', 'AuthController@show');
     $router->patch('archive/{id}', 'AuthController@archive');
@@ -146,10 +146,10 @@ $router->delete('/extras/{id}', 'ExtrasController@delete');
 
 // Routes pour la table RealEstate
 
-// $router->group(['middleware' => 'auth', 'prefix' => ''], function () use ($router) {
+$router->group(['middleware' => 'auth', 'prefix' => ''], function () use ($router) {
     $router->get('RealEstate', 'realestateController@showAllrealestateDetail');
     $router->get('/RealEstate/{id}', 'realestateController@showrealestateDetail');
     $router->post('RealEstate', 'realestateController@createrealestate');
     $router->put('/RealEstate/{id}', 'realestateController@updaterealestate');
     $router->delete('/RealEstate/{id}', 'realestateController@deleterealestate');
-// });
+});

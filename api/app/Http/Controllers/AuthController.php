@@ -57,20 +57,10 @@ class AuthController extends Controller
 
             $user->save();
 
-            //return successful response
-            return response()->json([
-                    'entity' => 'user',
-                    'action' => 'create',
-                    'result' => 'success'
-            ], 201);
+            return response()->json(['API_response' => 'Enregistrement effectue'], 201);
 
         } catch (Exception $e) {
-            //return error message
-            return response()->json([
-                'entity' => 'user',
-                'action' => 'create',
-                'result' => 'failed'
-            ], 409);
+            return response()->json(['API_response' => 'Enregistrement Impossible'], 409);
         }
 
     }
