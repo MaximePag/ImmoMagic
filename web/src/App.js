@@ -51,7 +51,7 @@ function App() {
 
         <Route path="/biens" exact component={RealEstateDetail} />
 
-        <PublicRoute path="/login" exact component={Login} />
+        <Route path="/login" exact component={Login} />
 
         <Route component={Http404} />
         <PrivateRoute path="/userProfile" exact component={UserProfile} />
