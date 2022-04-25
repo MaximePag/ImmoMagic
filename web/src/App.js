@@ -14,7 +14,6 @@ import RealEstateDetail from "./views/RealEstateDetail";
 
 import Login from './views/Login';
 import PrivateRoute from './Utils/PrivateRoute';
-import PublicRoute from './Utils/PublicRoute';
 import { getToken, removeUserSession, setUserSession } from './Utils/Common';
 
 function App() {
