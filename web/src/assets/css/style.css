@@ -42,7 +42,7 @@ h1{
   color: #e2aa19;}
 
 .home{
-  background-image: url(../img/home_bg.jpg);
+  background-image: url(../../../../web/src/assets/img/home_bg.jpg);
   background-size: cover;
 }
 .card, .card img{
