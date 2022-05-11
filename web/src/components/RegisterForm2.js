@@ -74,7 +74,7 @@ export default function Form() {
     const handleSubmit = (e) => {
         e.preventDefault()
         const data = new FormData(e);
-       console.log(data);
+       console.log(e);
         if (firstname === '' || lastname === '' || mail === '' || phoneNumber === '' || password === '' || address === '' || zipCode === '' || city === '') {
             setError(true);
         } else {

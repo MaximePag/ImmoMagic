@@ -24,8 +24,9 @@ class AuthController extends Controller
     /**
      * Store a new user.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function register(Request $request)
     {
